@@ -17,10 +17,12 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             
-            <BoxView BackgroundColor="#BE1177"  Grid.RowSpan="2"/>
+            <BoxView  BackgroundColor="#BE1177"  Grid.RowSpan="2"/>
            
-            <controls:ContentButton Command="{Binding OpenMenuCommand}" Grid.Row="1"  HorizontalOptions="Start" VerticalOptions="FillAndExpand">
-                <ffimageloading:CachedImage Source="menu"  VerticalOptions="End" DownsampleToViewSize="true" Margin="12,0,0,13"  WidthRequest="20" HeightRequest="20"  Aspect="AspectFill"/>
+            <controls:ContentButton WidthRequest="50" HeightRequest="50" Command="{Binding OpenMenuCommand}" Grid.Row="1"  HorizontalOptions="Start" VerticalOptions="FillAndExpand">
+             
+                <ffimageloading:CachedImage Margin="12,0,0,13" Source="menu" VerticalOptions="End" HorizontalOptions="Start"  DownsampleToViewSize="true"   WidthRequest="20" HeightRequest="20"  Aspect="Fill"/>
+               
             </controls:ContentButton>
             <Label Grid.Row="1"  Text="Dashboard" TextColor="White" FontSize="20" VerticalOptions="End" HorizontalOptions="Center" Margin="0,0,0,13"/>
         </Grid>

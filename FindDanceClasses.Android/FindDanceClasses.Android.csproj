@@ -88,9 +88,6 @@
     <PackageReference Include="Syncfusion.Xamarin.SfDataGrid">
       <Version>17.1.0.41</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.FFImageLoading.Forms">
-      <Version>2.4.5.880-pre</Version>
-    </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfTabView">
       <Version>17.1.0.41</Version>
     </PackageReference>
@@ -99,6 +96,9 @@
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.Expander">
       <Version>17.1.0.41</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.FFImageLoading">
+      <Version>2.4.5.909-pre</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>

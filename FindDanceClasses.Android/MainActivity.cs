@@ -8,6 +8,7 @@ using Android.Widget;
 using Android.OS;
 using FindDanceClasses.UI;
 using MvvmCross.Forms.Platforms.Android.Views;
+using FFImageLoading.Forms.Platform;
 
 namespace FindDanceClasses.Droid
 {
@@ -28,6 +29,7 @@ namespace FindDanceClasses.Droid
             Window.ClearFlags(WindowManagerFlags.Fullscreen);
             Window.AddFlags(WindowManagerFlags.TranslucentNavigation);
             Window.AddFlags(WindowManagerFlags.TranslucentStatus);
+
 
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init(true);
 

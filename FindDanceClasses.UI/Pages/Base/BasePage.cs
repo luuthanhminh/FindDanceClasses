@@ -14,13 +14,6 @@ namespace FindDanceClasses.UI.Pages
         {
             NavigationPage.SetHasNavigationBar(this, false);
 
-            if (Device.RuntimePlatform == Device.Android)
-            {
-                if (Mvx.IoCProvider.Resolve<IPlatformService>().GetHasHardwareKeys())
-                {
-                    this.Padding = new Thickness(0, 0, 0, 48);
-                }
-            }
         }
     }
 }

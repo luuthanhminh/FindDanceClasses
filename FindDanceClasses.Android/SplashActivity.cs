@@ -28,6 +28,8 @@ namespace FindDanceClasses.Droid
             base.OnCreate(bundle);
 
             Window.AddFlags(WindowManagerFlags.Fullscreen);
+
+            FFImageLoading.Forms.Platform.CachedImageRenderer.Init(true);
         }
 
         protected override Task RunAppStartAsync(Bundle bundle)

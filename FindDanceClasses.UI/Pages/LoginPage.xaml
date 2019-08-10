@@ -10,11 +10,11 @@
     <ContentPage.Content>
         <Grid  >
             
-            <ffimageloading:CachedImage Source="bgImage"  Aspect="AspectFill"/>
+            <ffimageloading:CachedImage Source="bgImage"  Aspect="Fill"/>
             <ScrollView Margin="0,94,0,0" Padding="0,0,0,104">
                 <StackLayout Spacing="0" HorizontalOptions="Center">
                     <Grid WidthRequest="337" HeightRequest="550">
-                        <ffimageloading:CachedImage Source="bglogin"  Aspect="AspectFill"/>
+                        <ffimageloading:CachedImage  Source="bglogin"  Aspect="Fill"/>
                         <StackLayout Spacing="0">
                              <ffimageloading:CachedImage Source="logobig" HorizontalOptions="Center" Margin="0,33,0,0" DownsampleToViewSize="true" WidthRequest="122" HeightRequest="60" Aspect="AspectFill"/>
                              <Label Text="Event Organiser" FontSize="16" TextColor="Black" HorizontalOptions="Center" Margin="0,20,0,0"/>
@@ -34,16 +34,16 @@
                                 </Grid>
                             </controls:ContentButton>
                             <Label Margin="0,26,0,0" Text="Log in using your social account" FontSize="14" TextColor="Black" HorizontalOptions="Center"/>
-                            <StackLayout Spacing="25" Orientation="Horizontal" Margin="0,27,0,0" HeightRequest="50" HorizontalOptions="Center">
+                            <StackLayout Spacing="25" Orientation="Horizontal" Margin="0,27,0,0" HeightRequest="50" HorizontalOptions="CenterAndExpand">
                                
-                                <controls:ContentButton >
-                                <ffimageloading:CachedImage Source="facebook"  VerticalOptions="Center" DownsampleToViewSize="true" HeightRequest="50" WidthRequest="50"  Aspect="AspectFill"/>
+                                <controls:ContentButton HeightRequest="50" WidthRequest="50">
+                                <ffimageloading:CachedImage Source="facebook"   DownsampleToViewSize="true"   Aspect="Fill"/>
                             </controls:ContentButton>
-                                  <controls:ContentButton >
-                                <ffimageloading:CachedImage Source="googleplus" VerticalOptions="Center" DownsampleToViewSize="true" HeightRequest="50" HorizontalOptions="Center"  WidthRequest="50"  Aspect="Fill"/>
+                                  <controls:ContentButton HeightRequest="50" WidthRequest="50">
+                                <ffimageloading:CachedImage Source="googleplus"  DownsampleToViewSize="true"  Aspect="Fill"/>
                             </controls:ContentButton>
-                                 <controls:ContentButton  >
-                                <ffimageloading:CachedImage  Source="linkedin" WidthRequest="50" DownsampleToViewSize="true" HeightRequest="50" VerticalOptions="Center"  Aspect="AspectFill"/>
+                                 <controls:ContentButton HeightRequest="50" WidthRequest="50" >
+                                <ffimageloading:CachedImage  Source="linkedin"  DownsampleToViewSize="true"  Aspect="Fill"/>
                             </controls:ContentButton>
                             </StackLayout>
                         </StackLayout>
