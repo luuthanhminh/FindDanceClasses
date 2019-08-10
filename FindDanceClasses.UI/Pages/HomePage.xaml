@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<views:BasePage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    x:Class="FindDanceClasses.UI.Pages.HomePage"
+    xmlns:views="clr-namespace:FindDanceClasses.UI.Pages;assembly=FindDanceClasses.UI"
+    xmlns:controls="clr-namespace:FindDanceClasses.UI.Controls;assembly=FindDanceClasses.UI"
+    xmlns:viewModels="clr-namespace:FindDanceClasses.Core.ViewModels;assembly=FindDanceClasses.Core"
+    x:TypeArguments="viewModels:HomeViewModel"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    >
+    <ContentPage.Content>
+        <Grid  RowSpacing="0" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="38"/>
+                  <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            
+            <BoxView BackgroundColor="#BE1177"  Grid.RowSpan="2"/>
+           
+            <controls:ContentButton Command="{Binding OpenMenuCommand}" Grid.Row="1"  HorizontalOptions="Start" VerticalOptions="FillAndExpand">
+                <ffimageloading:CachedImage Source="menu"  VerticalOptions="End" DownsampleToViewSize="true" Margin="12,0,0,13"  WidthRequest="20" HeightRequest="20"  Aspect="AspectFill"/>
+            </controls:ContentButton>
+            <Label Grid.Row="1"  Text="Dashboard" TextColor="White" FontSize="20" VerticalOptions="End" HorizontalOptions="Center" Margin="0,0,0,13"/>
+        </Grid>
+    </ContentPage.Content>
+</views:BasePage>
+

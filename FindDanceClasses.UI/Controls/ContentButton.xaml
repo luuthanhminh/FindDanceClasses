@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="FindDanceClasses.UI.Controls.ContentButton"
+             x:Name="Root"
+             BackgroundColor="Transparent">
+ <ContentView.ControlTemplate>
+        <ControlTemplate>
+            <Grid Margin="{TemplateBinding Margin}"
+                  BackgroundColor="{TemplateBinding BackgroundColor}"
+                  HorizontalOptions="{TemplateBinding HorizontalOptions}"
+                  IsVisible="{TemplateBinding IsVisible}"
+                  VerticalOptions="{TemplateBinding VerticalOptions}">
+                <Button BackgroundColor="Transparent"
+                        BorderColor="Transparent"
+                        BorderRadius="0"
+                        BorderWidth="0"
+                        Command="{TemplateBinding Command}"
+                        CommandParameter="{TemplateBinding CommandParameter}"
+                        HorizontalOptions="Fill"
+                        IsEnabled="{TemplateBinding IsEnabled}"
+                        VerticalOptions="Fill">
+                    <Button.Opacity>
+                        <OnPlatform x:TypeArguments="x:Double"
+                                    Android="0"
+                                    iOS="1" />
+                    </Button.Opacity>
+                </Button>
+                <ContentPresenter InputTransparent="true"
+                                  IsEnabled="{TemplateBinding IsEnabled}"
+                                  Padding="{TemplateBinding Padding}" />
+            </Grid>
+        </ControlTemplate>
+    </ContentView.ControlTemplate>
+</ContentView>

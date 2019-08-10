@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="FindDanceClasses.UI.App">
+    <Application.Resources>
+        
+        <ResourceDictionary>
+            
+            <Color x:Key="LoadingColor">#29abdf</Color>
+            
+          
+           
+            <!--BASE TEMPLATE-->
+            
+            <ControlTemplate x:Key="BaseTemplate">
+                <Grid BindingContext="{TemplateBinding BindingContext.DataContext}">
+                  
+                    <ContentPresenter  />
+                    
+                    <ActivityIndicator  x:Name="ActLoder" Color="{StaticResource LoadingColor}" HorizontalOptions="Center" VerticalOptions="Center" IsVisible="{Binding IsLoading}" IsRunning="{Binding IsLoading}" />
+                   
+                </Grid>
+            </ControlTemplate>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

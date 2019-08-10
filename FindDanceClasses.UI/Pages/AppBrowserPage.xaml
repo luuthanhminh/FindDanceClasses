@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<views:BasePage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="FindDanceClasses.UI.Pages.AppBrowserPage"
+              xmlns:views="clr-namespace:FindDanceClasses.UI.Pages;assembly=FindDanceClasses.UI"
+                xmlns:controls="clr-namespace:FindDanceClasses.UI.Controls;assembly=FindDanceClasses.UI"
+             xmlns:viewModels="clr-namespace:FindDanceClasses.Core.ViewModels;assembly=FindDanceClasses.Core"
+                xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+                xmlns:rating="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms"
+                xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             x:TypeArguments="viewModels:AppBrowserViewModel">
+    <ContentPage.Content>
+        <Grid BackgroundColor="#1F2124" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+         <!-- Header -->
+             <Grid BackgroundColor="#161616" Padding="0,20,0,0">
+                <Grid HorizontalOptions="Start" WidthRequest="25.5" Margin="9,0,0,0">
+                <controls:ContentButton  Command="{Binding CloseCommand}">
+                    <Image Source="back"   WidthRequest="10" Aspect="AspectFit"  VerticalOptions="Center" HorizontalOptions="Center"/>
+                </controls:ContentButton>
+                    </Grid>
+               
+                <!--<Label Text="Browser"  LineBreakMode="TailTruncation" FontSize="15.8" TextColor="White" VerticalOptions="Center" HorizontalOptions="Center"/>-->
+            </Grid>
+      
+             <WebView Grid.Row="1" x:Name="webView"  WidthRequest="1000" HeightRequest="1000" /> 
+            
+            <ActivityIndicator Grid.RowSpan="2" BackgroundColor="Transparent" Color="Silver" VerticalOptions="Center" HorizontalOptions="Center" IsVisible="{Binding IsLoading}" IsRunning="{Binding IsLoading}"/>
+            </Grid>
+    </ContentPage.Content>
+</views:BasePage>
+
+

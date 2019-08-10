@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<views:BaseMasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="FindDanceClasses.UI.Pages.DashboardPage"
+              xmlns:views="clr-namespace:FindDanceClasses.UI.Pages;assembly=FindDanceClasses.UI"
+                xmlns:controls="clr-namespace:FindDanceClasses.UI.Controls;assembly=FindDanceClasses.UI"
+             xmlns:viewModels="clr-namespace:FindDanceClasses.Core.ViewModels;assembly=FindDanceClasses.Core"
+             x:TypeArguments="viewModels:DashboardViewModel">
+    
+   
+</views:BaseMasterDetailPage>

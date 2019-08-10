@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<views:BasePage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="FindDanceClasses.UI.Pages.LoginPage"
+              xmlns:views="clr-namespace:FindDanceClasses.UI.Pages;assembly=FindDanceClasses.UI"
+                xmlns:controls="clr-namespace:FindDanceClasses.UI.Controls;assembly=FindDanceClasses.UI"
+             xmlns:viewModels="clr-namespace:FindDanceClasses.Core.ViewModels;assembly=FindDanceClasses.Core"
+                xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             x:TypeArguments="viewModels:LoginViewModel">
+    <ContentPage.Content>
+        <Grid  >
+            
+            <ffimageloading:CachedImage Source="bgImage"  Aspect="AspectFill"/>
+            <ScrollView Margin="0,94,0,0" Padding="0,0,0,104">
+                <StackLayout Spacing="0" HorizontalOptions="Center">
+                    <Grid WidthRequest="337" HeightRequest="550">
+                        <ffimageloading:CachedImage Source="bglogin"  Aspect="AspectFill"/>
+                        <StackLayout Spacing="0">
+                             <ffimageloading:CachedImage Source="logobig" HorizontalOptions="Center" Margin="0,33,0,0" DownsampleToViewSize="true" WidthRequest="122" HeightRequest="60" Aspect="AspectFill"/>
+                             <Label Text="Event Organiser" FontSize="16" TextColor="Black" HorizontalOptions="Center" Margin="0,20,0,0"/>
+                             <Grid WidthRequest="295" Margin="0,20,0,0" HeightRequest="53" HorizontalOptions="Center">
+                                <ffimageloading:CachedImage Source="bgEntry"   Aspect="AspectFill"/>
+                                <controls:BorderlessEntry  FontSize="14" TextColor="#656565" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Margin="14,0" Placeholder="Email address" PlaceholderColor="#656565"/>
+                            </Grid>
+                            <Grid WidthRequest="295" Margin="0,12,0,0" HeightRequest="53" HorizontalOptions="Center">
+                                <ffimageloading:CachedImage Source="bgEntry"   Aspect="AspectFill"/>
+                                <controls:BorderlessEntry IsPassword="true" FontSize="14" HorizontalOptions="FillAndExpand" TextColor="#656565" VerticalOptions="Center" Margin="14,0" Placeholder="Password" PlaceholderColor="#656565"/>
+                            </Grid>
+                            <Label Margin="0,27,0,0" Text="Forgot Password?" FontSize="14" TextColor="#AF106E" HorizontalOptions="Center"/>
+                            <controls:ContentButton Command="{Binding LoginCommand}">
+                                <Grid Margin="0,30,0,0" HorizontalOptions="Center" WidthRequest="257"  HeightRequest="51"> 
+                                    <ffimageloading:CachedImage Source="btnLogin"   Aspect="AspectFill"/>
+                                    <Label Text="LOGIN" TextColor="White" FontSize="16" VerticalOptions="Center" HorizontalOptions="Center"/>
+                                </Grid>
+                            </controls:ContentButton>
+                            <Label Margin="0,26,0,0" Text="Log in using your social account" FontSize="14" TextColor="Black" HorizontalOptions="Center"/>
+                            <StackLayout Spacing="25" Orientation="Horizontal" Margin="0,27,0,0" HeightRequest="50" HorizontalOptions="Center">
+                               
+                                <controls:ContentButton >
+                                <ffimageloading:CachedImage Source="facebook"  VerticalOptions="Center" DownsampleToViewSize="true" HeightRequest="50" WidthRequest="50"  Aspect="AspectFill"/>
+                            </controls:ContentButton>
+                                  <controls:ContentButton >
+                                <ffimageloading:CachedImage Source="googleplus" VerticalOptions="Center" DownsampleToViewSize="true" HeightRequest="50" HorizontalOptions="Center"  WidthRequest="50"  Aspect="Fill"/>
+                            </controls:ContentButton>
+                                 <controls:ContentButton  >
+                                <ffimageloading:CachedImage  Source="linkedin" WidthRequest="50" DownsampleToViewSize="true" HeightRequest="50" VerticalOptions="Center"  Aspect="AspectFill"/>
+                            </controls:ContentButton>
+                            </StackLayout>
+                        </StackLayout>
+                    </Grid>
+                    <Label Margin="0,45,0,0" Text="Don’t have account? Sign up" FontSize="14" TextColor="White" HorizontalOptions="Center"/>
+                </StackLayout>
+            </ScrollView>
+          
+            <ActivityIndicator BackgroundColor="Transparent" Color="#BE1177" VerticalOptions="Center" HorizontalOptions="Center" IsVisible="{Binding IsLoading}" IsRunning="{Binding IsLoading}"/>
+        </Grid>
+    </ContentPage.Content>
+</views:BasePage>
