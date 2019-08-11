@@ -5,15 +5,8 @@ namespace FindDanceClasses.Core.Infrastructure
 {
     public class ApiResponse<T>
     {
-        public bool IsSuccess { get; set; }
-
-        public string Message { get; set; }
-
-        public List<string> Errors { get; set; }
-
-        public int ResponseStatusCode { get; set; }
-
-        public T ResponseObject { get; set; }
+        public T Result { get; set; }
+        public Result Err { get; set; }
     }
 
     public class ApiResponse

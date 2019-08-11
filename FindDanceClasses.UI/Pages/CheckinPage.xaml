@@ -2,38 +2,34 @@
 <views:BasePage
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-    x:Class="FindDanceClasses.UI.Pages.HomePage"
+    x:Class="FindDanceClasses.UI.Pages.CheckinPage"
     xmlns:views="clr-namespace:FindDanceClasses.UI.Pages;assembly=FindDanceClasses.UI"
     xmlns:controls="clr-namespace:FindDanceClasses.UI.Controls;assembly=FindDanceClasses.UI"
     xmlns:viewModels="clr-namespace:FindDanceClasses.Core.ViewModels;assembly=FindDanceClasses.Core"
-    x:TypeArguments="viewModels:HomeViewModel"
+    x:TypeArguments="viewModels:CheckinViewModel"
     xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
     >
     <ContentPage.Content>
-        <Grid  RowSpacing="0" >
+      <Grid  RowSpacing="0" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="38"/>
                   <RowDefinition Height="50"/>
-                 <RowDefinition Height="155"/>
-                  <RowDefinition Height="21"/>
+                
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             
-            <BoxView BackgroundColor="#BE1177"  Grid.RowSpan="4"/>
-            <BoxView Grid.Row="3" Grid.RowSpan="2" BackgroundColor="White" CornerRadius="10"/>
-            <BoxView Grid.Row="4" BackgroundColor="White"/>
+            <BoxView BackgroundColor="#BE1177"  Grid.RowSpan="2"/>
+        
            
             <controls:ContentButton WidthRequest="50" HeightRequest="50" Command="{Binding OpenMenuCommand}" Grid.Row="1"  HorizontalOptions="Start" VerticalOptions="FillAndExpand">
              
                 <ffimageloading:CachedImage Margin="12,0,0,13" Source="menu" VerticalOptions="End" HorizontalOptions="Start"  DownsampleToViewSize="true"   WidthRequest="23" HeightRequest="16"  Aspect="Fill"/>
                
             </controls:ContentButton>
-            <Label Grid.Row="1"  Text="Dashboard" TextColor="White" FontSize="20" VerticalOptions="End" HorizontalOptions="Center" Margin="0,0,0,10"/>
-            <StackLayout Grid.Row="2" Spacing="0" HorizontalOptions="Center"  Margin="0,18,0,0">
-                 <Label  Text="£0.00" FontSize="66" TextColor="White" HorizontalOptions="Center"/>
-                 <Label  Text="Gross sales" FontSize="16" Margin="0,8,0,0" TextColor="White" HorizontalOptions="Center"/>
-            </StackLayout>
+            <Label Grid.Row="1"  Text="Check-in" TextColor="White" FontSize="20" VerticalOptions="End" HorizontalOptions="Center" Margin="0,0,0,10"/>
+          
            
+            
         </Grid>
     </ContentPage.Content>
 </views:BasePage>

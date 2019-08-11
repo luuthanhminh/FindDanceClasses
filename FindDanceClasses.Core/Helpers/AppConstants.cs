@@ -10,5 +10,9 @@ namespace FindDanceClasses.Core.Helpers
         public const int UrlTimeout = 30;
 
         public const int DEFAULT_ITEM_NUMBER = 10;
+
+        public const string DEFAULT_USER_NAME = "fdc_Apples";
+
+        public const string DEFAULT_PASSWORD = "_howDoYouLikeThem91___";
     }
 }

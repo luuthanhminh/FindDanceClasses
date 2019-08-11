@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<views:BasePage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    x:Class="FindDanceClasses.UI.Pages.EventSetupPage"
+    xmlns:views="clr-namespace:FindDanceClasses.UI.Pages;assembly=FindDanceClasses.UI"
+    xmlns:controls="clr-namespace:FindDanceClasses.UI.Controls;assembly=FindDanceClasses.UI"
+    xmlns:viewModels="clr-namespace:FindDanceClasses.Core.ViewModels;assembly=FindDanceClasses.Core"
+    x:TypeArguments="viewModels:EventSetupViewModel"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:sv="clr-namespace:AiForms.Renderers;assembly=SettingsView"
+    >
+    <ContentPage.Content>
+        <Grid  RowSpacing="0" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="38"/>
+                  <RowDefinition Height="50"/>
+                
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            
+            <BoxView BackgroundColor="#BE1177"  Grid.RowSpan="2"/>
+        
+           
+            <controls:ContentButton WidthRequest="50" HeightRequest="50" Command="{Binding OpenMenuCommand}" Grid.Row="1"  HorizontalOptions="Start" VerticalOptions="FillAndExpand">
+             
+                <ffimageloading:CachedImage Margin="12,0,0,13" Source="menu" VerticalOptions="End" HorizontalOptions="Start"  DownsampleToViewSize="true"   WidthRequest="23" HeightRequest="16"  Aspect="Fill"/>
+               
+            </controls:ContentButton>
+            <Label Grid.Row="1"  Text="Event Set-up" TextColor="White" FontSize="20" VerticalOptions="End" HorizontalOptions="Center" Margin="0,0,0,10"/>
+            <BoxView Grid.Row="2" BackgroundColor="#F1F2F4"/>
+            <Grid Grid.Row="2" RowSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                     <RowDefinition Height="120"/>
+                </Grid.RowDefinitions>
+                 <StackLayout  Spacing="0" >
+                <Label Text="Event Check-in Settings"  TextColor="Black" FontSize="16" Margin="13,56,0,0"/>
+                <sv:SettingsView HeaderFontSize="12" HeaderHeight="35" HeaderTextVerticalAlign="End" HeaderPadding="13,0,0,10" HeaderBackgroundColor="#F1F2F4" Margin="0,4,0,0" HasUnevenRows="true">
+                 <sv:Section Title="Changes will be reflected on all devices for this event">
+                     <sv:SwitchCell TitleFontSize="16"  Height="55.8" Title="Attendee Details"  On="true" AccentColor="#BE1177" />
+                    <sv:SwitchCell TitleFontSize="16" Height="55.8" Title="Waiver Signature" On="true" AccentColor="#BE1177" />
+                </sv:Section>
+                 <sv:Section Title="Device Settings For This Event">
+                    <ViewCell>
+                            <Grid HeightRequest="55.8">
+                                <Label Margin="13,0,0,0" Text="Offline Check-in" TextColor="Black" FontSize="16" HorizontalOptions="Start" VerticalOptions="Center"/>
+                                <StackLayout Spacing="10" Padding="0,0,18,0" Orientation="Horizontal" HorizontalOptions="EndAndExpand" VerticalOptions="Center">
+                                    <Label Text="No" TextColor="#BE1177" VerticalOptions="Center"/>
+                                    <Image Source="rightArrow" WidthRequest="14.5" VerticalOptions="Center" Aspect="AspectFit"/>
+                                </StackLayout>
+                            </Grid>
+                        </ViewCell>
+                </sv:Section>
+            </sv:SettingsView>
+                
+            </StackLayout>
+                 <controls:ContentButton Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Start" HeightRequest="57" WidthRequest="322" >
+                                <Grid   > 
+                                    <ffimageloading:CachedImage Source="btnUpdate" Aspect="Fill"/>
+                                    <Label Text="Update" TextColor="White" FontSize="16" VerticalOptions="Center" HorizontalOptions="Center"/>
+                                </Grid>
+                </controls:ContentButton>
+            </Grid>
+           
+            
+        </Grid>
+    </ContentPage.Content>
+</views:BasePage>
+

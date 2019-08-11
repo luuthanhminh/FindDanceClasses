@@ -27,31 +27,31 @@
                 </controls:ContentButton>
                     
                 <StackLayout Orientation="Horizontal"/>
-                   <controls:ContentButton >
+                   <controls:ContentButton Command="{Binding GoToCheckinCommand}">
                                 <StackLayout Margin="0,45,0,0" Spacing="17" HorizontalOptions="Start" Orientation="Horizontal"> 
                                     <ffimageloading:CachedImage WidthRequest="20" VerticalOptions="Center" Source="Checkin" Aspect="AspectFit"/>
                                     <Label Text="Check-in" TextColor="Black" FontSize="16" VerticalOptions="Center" />
                                 </StackLayout>
                 </controls:ContentButton>
-                 <controls:ContentButton >
+                 <controls:ContentButton Command="{Binding GoToHomeCommand}">
                                 <StackLayout Margin="0,45,0,0" Spacing="17" HorizontalOptions="Start" Orientation="Horizontal"> 
                                     <ffimageloading:CachedImage WidthRequest="23" VerticalOptions="Center" Source="Dashboard" Aspect="AspectFit"/>
                                     <Label Text="Dashboard" TextColor="Black" FontSize="16" VerticalOptions="Center" />
                                 </StackLayout>
                 </controls:ContentButton>
-                 <controls:ContentButton >
+                 <controls:ContentButton Command="{Binding GoToEventSetupCommand}">
                                 <StackLayout Margin="0,45,0,0" Spacing="17" HorizontalOptions="Start" Orientation="Horizontal"> 
                                     <ffimageloading:CachedImage WidthRequest="20" VerticalOptions="Center" Source="Event" Aspect="AspectFit"/>
                                     <Label Text="Event Set-up" TextColor="Black" FontSize="16" VerticalOptions="Center" />
                                 </StackLayout>
                 </controls:ContentButton>
-                      <controls:ContentButton >
+                      <controls:ContentButton Command="{Binding GoToTutorialCommand}">
                                 <StackLayout Margin="0,45,0,0" Spacing="17" HorizontalOptions="Start" Orientation="Horizontal"> 
                                     <ffimageloading:CachedImage WidthRequest="24.9" VerticalOptions="Center" Source="Tutorial" Aspect="AspectFit"/>
                                     <Label Text="Tutorial" TextColor="Black" FontSize="16" VerticalOptions="Center" />
                                 </StackLayout>
                 </controls:ContentButton>
-                     <controls:ContentButton >
+                     <controls:ContentButton Command="{Binding GoToSettingsCommand}">
                                 <StackLayout Margin="0,45,0,0" Spacing="17" HorizontalOptions="Start" Orientation="Horizontal"> 
                                     <ffimageloading:CachedImage WidthRequest="22" VerticalOptions="Center" Source="Settings" Aspect="AspectFit"/>
                                     <Label Text="My Settings" TextColor="Black" FontSize="16" VerticalOptions="Center" />

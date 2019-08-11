@@ -7,17 +7,54 @@ using FindDanceClasses.Core.Helpers;
 using Flurl.Http;
 using FindDanceClasses.Core.Infrastructure;
 using FindDanceClasses.Core.Commands;
+using System.Collections.Generic;
+using FindDanceClasses.Core.Models;
 
 
 namespace FindDanceClasses.Core.Services
 {
     public interface IApiService
     {
-
+        Task<ApiResponse<List<Event>>> GetEvents(int companyId);
     }
 
     public class ApiService : BaseApiService, IApiService
     {
+        const string BASE_URL = "https://www.finddanceclasses.co.uk/Api/MobileApi";
 
+        const string GET_EVENTS_BY_COMPANY = BASE_URL + "/GetAllEventsByCompanyId";
+
+        const string GET_TICKETS_BY_COMPANY_AND_EVENT = BASE_URL + "/GetAllTicketsByCompanyAndEventId";
+
+        const string CHECK_IN_USER_BY_QR_CODE = BASE_URL + "/CheckInUserByQrCode";
+
+        public async Task<ApiResponse<List<Event>>> GetEvents(int companyId)
+        {
+            try
+            {
+                var result = await GET_EVENTS_BY_COMPANY.WithBasicAuth(AppConstants.DEFAULT_USER_NAME, AppConstants.DEFAULT_PASSWORD).SetQueryParams(new
+                {
+                    companyId = companyId
+                }).GetJsonAsync<List<Event>>();
+
+
+
+                return new ApiResponse<List<Event>>
+                {
+                    Result = result
+                };
+            }
+            catch (Exception ex)
+            {
+                return new ApiResponse<List<Event>>
+                {
+                    Err = new Result()
+                    {
+                        IsError = true,
+                        Message = ex.Message
+                    }
+                };
+            }
+        }
     }
 }

@@ -71,9 +71,31 @@ namespace FindDanceClasses.Core.ViewModels
             {
                 ShowLoading();
 
-                await Task.Delay(2000);
+                Email = AppConstants.DEFAULT_USER_NAME;
+                Password = AppConstants.DEFAULT_PASSWORD;
 
-                await ClearStackAndNavigateToPage<DashboardViewModel>();
+                if (String.IsNullOrEmpty(Email))
+                {
+                    await DialogService.ShowMessage("Error", "Please enter email.", "OK");
+                    return;
+                }
+
+                if (String.IsNullOrEmpty(Password))
+                {
+                    await DialogService.ShowMessage("Error", "Please enter password.", "OK");
+                    return;
+                }
+
+                if (Email.Equals(AppConstants.DEFAULT_USER_NAME) && Password.Equals(AppConstants.DEFAULT_PASSWORD))
+                {
+                    await ClearStackAndNavigateToPage<DashboardViewModel>();
+                }
+                else
+                {
+                    await DialogService.ShowMessage("Error", "Email or password invalid", "OK");
+                }
+
+
             }
             catch (Exception ex)
             {

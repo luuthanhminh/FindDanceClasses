@@ -180,6 +180,9 @@
     <PackageReference Include="Xamarin.FFImageLoading.Forms">
       <Version>2.4.5.909-pre</Version>
     </PackageReference>
+    <PackageReference Include="AiForms.SettingsView">
+      <Version>0.5.2</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>

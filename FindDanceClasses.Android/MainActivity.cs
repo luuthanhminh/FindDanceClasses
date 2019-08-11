@@ -32,6 +32,7 @@ namespace FindDanceClasses.Droid
 
 
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init(true);
+            AiForms.Renderers.Droid.SettingsViewInit.Init();
 
         }
     }
