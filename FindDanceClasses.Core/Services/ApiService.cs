@@ -22,6 +22,8 @@ namespace FindDanceClasses.Core.Services
     {
         const string BASE_URL = "https://www.finddanceclasses.co.uk/Api/MobileApi";
 
+
+
         const string GET_EVENTS_BY_COMPANY = BASE_URL + "/GetAllEventsByCompanyId";
 
         const string GET_TICKETS_BY_COMPANY_AND_EVENT = BASE_URL + "/GetAllTicketsByCompanyAndEventId";

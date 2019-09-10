@@ -20,11 +20,11 @@
                              <Label Text="Event Organiser" FontSize="16" TextColor="Black" HorizontalOptions="Center" Margin="0,20,0,0"/>
                              <Grid WidthRequest="295" Margin="0,20,0,0" HeightRequest="53" HorizontalOptions="Center">
                                 <ffimageloading:CachedImage Source="bgEntry"   Aspect="AspectFill"/>
-                                <controls:BorderlessEntry  FontSize="14" TextColor="#656565" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Margin="14,0" Placeholder="Email address" PlaceholderColor="#656565"/>
+                                <controls:BorderlessEntry Text="{Binding Email}" FontSize="14" TextColor="#656565" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Margin="14,0" Placeholder="Email address" PlaceholderColor="#656565"/>
                             </Grid>
                             <Grid WidthRequest="295" Margin="0,12,0,0" HeightRequest="53" HorizontalOptions="Center">
                                 <ffimageloading:CachedImage Source="bgEntry"   Aspect="AspectFill"/>
-                                <controls:BorderlessEntry IsPassword="true" FontSize="14" HorizontalOptions="FillAndExpand" TextColor="#656565" VerticalOptions="Center" Margin="14,0" Placeholder="Password" PlaceholderColor="#656565"/>
+                                <controls:BorderlessEntry Text="{Binding Password}" IsPassword="true" FontSize="14" HorizontalOptions="FillAndExpand" TextColor="#656565" VerticalOptions="Center" Margin="14,0" Placeholder="Password" PlaceholderColor="#656565"/>
                             </Grid>
                             <Label Margin="0,27,0,0" Text="Forgot Password?" FontSize="14" TextColor="#AF106E" HorizontalOptions="Center"/>
                             <controls:ContentButton Command="{Binding LoginCommand}">

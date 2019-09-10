@@ -70,9 +70,10 @@ namespace FindDanceClasses.Core.ViewModels
             try
             {
                 ShowLoading();
-
-                Email = AppConstants.DEFAULT_USER_NAME;
-                Password = AppConstants.DEFAULT_PASSWORD;
+#if DEBUG
+                Email = "daniel_filipe@outlook.com";
+                Password = "TestyTesting99";
+#endif
 
                 if (String.IsNullOrEmpty(Email))
                 {
@@ -86,15 +87,23 @@ namespace FindDanceClasses.Core.ViewModels
                     return;
                 }
 
-                if (Email.Equals(AppConstants.DEFAULT_USER_NAME) && Password.Equals(AppConstants.DEFAULT_PASSWORD))
+                var result = await _loginApiService.Login(new LoginBindingModel()
                 {
+                    UserName = this.Email,
+                    Password = this.Password,
+                    RememberMe = true
+                });
+
+                if (String.IsNullOrEmpty(result.Message))
+                {
+                    AppSettings.Token = result.Token;
+                    AppSettings.UserId = result.UserId;
                     await ClearStackAndNavigateToPage<DashboardViewModel>();
                 }
                 else
                 {
-                    await DialogService.ShowMessage("Error", "Email or password invalid", "OK");
+                    await DialogService.ShowMessage("Error", result.Message, "OK");
                 }
-
 
             }
             catch (Exception ex)

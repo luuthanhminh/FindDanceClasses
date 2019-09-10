@@ -11,12 +11,24 @@ namespace FindDanceClasses.Core.Helpers
     {
         private static ISettings Settings => CrossSettings.Current;
 
-        #region TokenUser
 
-        public static string TokenUser
+
+        #region Token
+
+        public static string Token
         {
-            get => Settings.GetValueOrDefault(nameof(TokenUser), string.Empty);
-            set => Settings.AddOrUpdateValue(nameof(TokenUser), value);
+            get => Settings.GetValueOrDefault(nameof(Token), string.Empty);
+            set => Settings.AddOrUpdateValue(nameof(Token), value);
+        }
+
+        #endregion
+
+        #region UserId
+
+        public static string UserId
+        {
+            get => Settings.GetValueOrDefault(nameof(UserId), string.Empty);
+            set => Settings.AddOrUpdateValue(nameof(UserId), value);
         }
 
         #endregion

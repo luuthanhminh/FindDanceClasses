@@ -3,16 +3,16 @@ namespace FindDanceClasses.Core.CommandResults
 {
     public class LoginResponse
     {
-        public bool IsAppValid { get; set; }
+        public string UserId { get; set; }
 
-        public bool IsUserValid { get; set; }
+        public string Username { get; set; }
 
-        public string TokenUser { get; set; }
+        public string Email { get; set; }
 
-        public bool IsError { get; set; }
+        public string Token { get; set; }
 
-        public string ErrorMesssage { get; set; }
+        public DateTimeOffset TokenExpiryDate { get; set; }
 
-        public int DefaultListID { get; set; }
+        public string Message { get; set; }
     }
 }

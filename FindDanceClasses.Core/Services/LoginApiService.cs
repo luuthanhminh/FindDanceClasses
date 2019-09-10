@@ -5,6 +5,12 @@ using FindDanceClasses.Core.Commands;
 using Flurl.Http;
 using Flurl;
 using FindDanceClasses.Core.Services.Base;
+using System.Net.Http;
+using Flurl.Http.Configuration;
+using System.Net.Http.Headers;
+using System.Text;
+using Newtonsoft.Json;
+
 namespace FindDanceClasses.Core.Services
 {
     public interface ILoginApiService
@@ -14,18 +20,31 @@ namespace FindDanceClasses.Core.Services
 
     public class LoginApiService : BaseApiService, ILoginApiService
     {
-        const string LOGIN_ENDPOINT = "";
+        const string BASE_URL = "https://www.finddanceclasses.co.uk/Api/MobileApi";
+
+        const string LOGIN_URL = BASE_URL + "/Login";
 
         public async Task<LoginResponse> Login(LoginBindingModel model)
         {
             try
             {
-                var result = await LOGIN_ENDPOINT.SetQueryParams(new
+
+                HttpClient client = new HttpClient();
+                client.Timeout = TimeSpan.FromSeconds(15);
+
+                var request = new HttpRequestMessage
                 {
-                    LogInName = model.LogInName,
-                    Password = model.Password,
-                    TokenApp = model.TokenApp
-                }).GetJsonAsync<LoginResponse>();
+                    Method = HttpMethod.Get,
+                    RequestUri = new Uri(LOGIN_URL),
+                    Content = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json"),
+                };
+
+                var response = await client.SendAsync(request).ConfigureAwait(false);
+
+
+                var responseBody = await response.Content.ReadAsStringAsync();
+
+                var result = JsonConvert.DeserializeObject<LoginResponse>(responseBody);
 
                 return result;
             }
@@ -33,8 +52,7 @@ namespace FindDanceClasses.Core.Services
             {
                 return new LoginResponse()
                 {
-                    IsError = true,
-                    ErrorMesssage = ex.Message
+                    Message = ex.Message
                 };
             }
         }

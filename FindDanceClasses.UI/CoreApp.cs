@@ -19,8 +19,14 @@ namespace FindDanceClasses.UI
                 .AsInterfaces()
                 .RegisterAsLazySingleton();
 
-            RegisterAppStart<LoginViewModel>();
-
+            if (String.IsNullOrEmpty(AppSettings.Token))
+            {
+                RegisterAppStart<LoginViewModel>();
+            }
+            else
+            {
+                RegisterAppStart<DashboardViewModel>();
+            }
 
 
             Mvx.IoCProvider.RegisterType<IDialogService, DialogService>();
