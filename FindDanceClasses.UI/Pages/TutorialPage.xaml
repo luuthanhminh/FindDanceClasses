@@ -1,35 +1,311 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <views:BasePage
     xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="FindDanceClasses.UI.Pages.TutorialPage"
     xmlns:views="clr-namespace:FindDanceClasses.UI.Pages;assembly=FindDanceClasses.UI"
     xmlns:controls="clr-namespace:FindDanceClasses.UI.Controls;assembly=FindDanceClasses.UI"
     xmlns:viewModels="clr-namespace:FindDanceClasses.Core.ViewModels;assembly=FindDanceClasses.Core"
     x:TypeArguments="viewModels:TutorialViewModel"
     xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
-    >
+    xmlns:tabView="clr-namespace:Syncfusion.XForms.TabView;assembly=Syncfusion.SfTabView.XForms">
     <ContentPage.Content>
-       <Grid  RowSpacing="0" >
+        <Grid  RowSpacing="0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="38"/>
-                  <RowDefinition Height="50"/>
-                
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="38" />
+                <RowDefinition Height="50" />
+
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            
-            <BoxView BackgroundColor="#BE1177"  Grid.RowSpan="2"/>
-        
-           
-            <controls:ContentButton WidthRequest="50" HeightRequest="50" Command="{Binding OpenMenuCommand}" Grid.Row="1"  HorizontalOptions="Start" VerticalOptions="FillAndExpand">
-             
-                <ffimageloading:CachedImage Margin="12,0,0,13" Source="menu" VerticalOptions="End" HorizontalOptions="Start"  DownsampleToViewSize="true"   WidthRequest="23" HeightRequest="16"  Aspect="Fill"/>
-               
+
+
+
+            <tabView:SfTabView Grid.RowSpan="3"
+                               TabHeaderBackgroundColor="Transparent"
+                               BackgroundColor="Transparent"
+                               VisibleHeaderCount="3"
+                               EnableSwiping="True"
+                               DisplayMode="NoHeader">
+                <tabView:SfTabItem>
+                    <tabView:SfTabItem.Content>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="490" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <ffimageloading:CachedImage Source="page"
+                                                        HeightRequest="490"
+                                                        Aspect="AspectFill"
+                                                        VerticalOptions="Start"
+                                                        HorizontalOptions="FillAndExpand" />
+                            <StackLayout Grid.Row="1"
+                                         Spacing="0">
+                                <Label Text="Quick and Easy Check-in"
+                                       FontSize="18"
+                                       TextColor="#BE1177"
+                                       Margin="0,15,0,0"
+                                       HorizontalOptions="Center" />
+
+                                <Label Text="Get rid of long lines and quickly check in attendees! Set up the check-in flow with only the steps you need for your event."
+                                       FontSize="14"
+                                       TextColor="Black"
+                                       Margin="15,15,15,0"
+                                       HorizontalOptions="Center"
+                                       HorizontalTextAlignment="Center" />
+
+                                <StackLayout Orientation="Horizontal"
+                                             HorizontalOptions="Center"
+                                             Margin="0,15,0,15">
+
+                                    <controls:RoundedBoxView WidthRequest="12"
+                                                             HeightRequest="12"
+                                                             CustomCornerRadius="12"
+                                                             BackgroundColor="#BE1177"
+                                                             BorderColor="#BE1177"
+                                                             BorderWidth="1" />
+                                    <controls:RoundedBoxView WidthRequest="12"
+                                                             HeightRequest="12"
+                                                             CustomCornerRadius="12"
+                                                             BackgroundColor="White"
+                                                             BorderColor="#BE1177"
+                                                             BorderWidth="1" />
+                                    <controls:RoundedBoxView WidthRequest="12"
+                                                             HeightRequest="12"
+                                                             CustomCornerRadius="12"
+                                                             BackgroundColor="White"
+                                                             BorderColor="#BE1177"
+                                                             BorderWidth="1" />
+                                    <controls:RoundedBoxView WidthRequest="12"
+                                                             HeightRequest="12"
+                                                             CustomCornerRadius="12"
+                                                             BackgroundColor="White"
+                                                             BorderColor="#BE1177"
+                                                             BorderWidth="1" />
+                                </StackLayout>
+
+                            </StackLayout>
+                        </Grid>
+                    </tabView:SfTabItem.Content>
+                </tabView:SfTabItem>
+                <tabView:SfTabItem>
+                    <tabView:SfTabItem.Content>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="490" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <ffimageloading:CachedImage Source="page"
+                                                        HeightRequest="490"
+                                                        Aspect="AspectFill"
+                                                        VerticalOptions="Start"
+                                                        HorizontalOptions="FillAndExpand" />
+                            <StackLayout Grid.Row="1"
+                                         Spacing="0">
+                                <Label Text="Quick and Easy Check-in"
+                                       FontSize="18"
+                                       TextColor="#BE1177"
+                                       Margin="0,15,0,0"
+                                       HorizontalOptions="Center" />
+
+                                <Label Text="Get rid of long lines and quickly check in attendees! Set up the check-in flow with only the steps you need for your event."
+                                       FontSize="14"
+                                       TextColor="Black"
+                                       Margin="15,15,15,0"
+                                       HorizontalOptions="Center"
+                                       HorizontalTextAlignment="Center" />
+
+                                <StackLayout Orientation="Horizontal"
+                                             HorizontalOptions="Center"
+                                             Margin="0,15,0,15">
+                                    <controls:RoundedBoxView WidthRequest="12"
+                                                             HeightRequest="12"
+                                                             CustomCornerRadius="12"
+                                                             BackgroundColor="White"
+                                                             BorderColor="#BE1177"
+                                                             BorderWidth="1" />
+                                    <controls:RoundedBoxView WidthRequest="12"
+                                                             HeightRequest="12"
+                                                             CustomCornerRadius="12"
+                                                             BackgroundColor="#BE1177"
+                                                             BorderColor="#BE1177"
+                                                             BorderWidth="1" />
+
+                                    <controls:RoundedBoxView WidthRequest="12"
+                                                             HeightRequest="12"
+                                                             CustomCornerRadius="12"
+                                                             BackgroundColor="White"
+                                                             BorderColor="#BE1177"
+                                                             BorderWidth="1" />
+                                    <controls:RoundedBoxView WidthRequest="12"
+                                                             HeightRequest="12"
+                                                             CustomCornerRadius="12"
+                                                             BackgroundColor="White"
+                                                             BorderColor="#BE1177"
+                                                             BorderWidth="1" />
+                                </StackLayout>
+
+                            </StackLayout>
+                        </Grid>
+                    </tabView:SfTabItem.Content>
+                </tabView:SfTabItem>
+                <tabView:SfTabItem>
+                    <tabView:SfTabItem.Content>
+
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="490" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <ffimageloading:CachedImage Source="page"
+                                                        HeightRequest="490"
+                                                        Aspect="AspectFill"
+                                                        VerticalOptions="Start"
+                                                        HorizontalOptions="FillAndExpand" />
+                            <StackLayout Grid.Row="1"
+                                         Spacing="0">
+                                <Label Text="Quick and Easy Check-in"
+                                       FontSize="18"
+                                       TextColor="#BE1177"
+                                       Margin="0,15,0,0"
+                                       HorizontalOptions="Center" />
+
+                                <Label Text="Get rid of long lines and quickly check in attendees! Set up the check-in flow with only the steps you need for your event."
+                                       FontSize="14"
+                                       TextColor="Black"
+                                       Margin="15,15,15,0"
+                                       HorizontalOptions="Center"
+                                       HorizontalTextAlignment="Center" />
+
+                                <StackLayout Orientation="Horizontal"
+                                             HorizontalOptions="Center"
+                                             Margin="0,15,0,15">
+                                    <controls:RoundedBoxView WidthRequest="12"
+                                                             HeightRequest="12"
+                                                             CustomCornerRadius="12"
+                                                             BackgroundColor="White"
+                                                             BorderColor="#BE1177"
+                                                             BorderWidth="1" />
+                                    <controls:RoundedBoxView WidthRequest="12"
+                                                             HeightRequest="12"
+                                                             CustomCornerRadius="12"
+                                                             BackgroundColor="White"
+                                                             BorderColor="#BE1177"
+                                                             BorderWidth="1" />
+                                    <controls:RoundedBoxView WidthRequest="12"
+                                                             HeightRequest="12"
+                                                             CustomCornerRadius="12"
+                                                             BackgroundColor="#BE1177"
+                                                             BorderColor="#BE1177"
+                                                             BorderWidth="1" />
+
+
+                                    <controls:RoundedBoxView WidthRequest="12"
+                                                             HeightRequest="12"
+                                                             CustomCornerRadius="12"
+                                                             BackgroundColor="White"
+                                                             BorderColor="#BE1177"
+                                                             BorderWidth="1" />
+                                </StackLayout>
+
+                            </StackLayout>
+                        </Grid>
+                    </tabView:SfTabItem.Content>
+                </tabView:SfTabItem>
+                <tabView:SfTabItem>
+                    <tabView:SfTabItem.Content>
+
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="490" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <ffimageloading:CachedImage Source="page"
+                                                        HeightRequest="490"
+                                                        Aspect="AspectFill"
+                                                        VerticalOptions="Start"
+                                                        HorizontalOptions="FillAndExpand" />
+                            <StackLayout Grid.Row="1"
+                                         Spacing="0">
+                                <Label Text="Quick and Easy Check-in"
+                                       FontSize="18"
+                                       TextColor="#BE1177"
+                                       Margin="0,15,0,0"
+                                       HorizontalOptions="Center" />
+
+                                <Label Text="Get rid of long lines and quickly check in attendees! Set up the check-in flow with only the steps you need for your event."
+                                       FontSize="14"
+                                       TextColor="Black"
+                                       Margin="15,15,15,0"
+                                       HorizontalOptions="Center"
+                                       HorizontalTextAlignment="Center" />
+
+                                <StackLayout Orientation="Horizontal"
+                                             HorizontalOptions="Center"
+                                             Margin="0,15,0,15">
+                                    <controls:RoundedBoxView WidthRequest="12"
+                                                             HeightRequest="12"
+                                                             CustomCornerRadius="12"
+                                                             BackgroundColor="White"
+                                                             BorderColor="#BE1177"
+                                                             BorderWidth="1" />
+                                    <controls:RoundedBoxView WidthRequest="12"
+                                                             HeightRequest="12"
+                                                             CustomCornerRadius="12"
+                                                             BackgroundColor="White"
+                                                             BorderColor="#BE1177"
+                                                             BorderWidth="1" />
+                                    <controls:RoundedBoxView WidthRequest="12"
+                                                             HeightRequest="12"
+                                                             CustomCornerRadius="12"
+                                                             BackgroundColor="White"
+                                                             BorderColor="#BE1177"
+                                                             BorderWidth="1" />
+                                    <controls:RoundedBoxView WidthRequest="12"
+                                                             HeightRequest="12"
+                                                             CustomCornerRadius="12"
+                                                             BackgroundColor="#BE1177"
+                                                             BorderColor="#BE1177"
+                                                             BorderWidth="1" />
+
+
+
+                                </StackLayout>
+
+                            </StackLayout>
+                        </Grid>
+                    </tabView:SfTabItem.Content>
+                </tabView:SfTabItem>
+            </tabView:SfTabView>
+
+
+            <BoxView BackgroundColor="#BE1177"
+                     Grid.RowSpan="2" />
+
+
+            <controls:ContentButton WidthRequest="50"
+                                    HeightRequest="50"
+                                    Command="{Binding OpenMenuCommand}"
+                                    Grid.Row="1"
+                                    HorizontalOptions="Start"
+                                    VerticalOptions="FillAndExpand">
+
+                <ffimageloading:CachedImage Margin="12,0,0,13"
+                                            Source="menu"
+                                            VerticalOptions="End"
+                                            HorizontalOptions="Start"
+                                            DownsampleToViewSize="true"
+                                            WidthRequest="23"
+                                            HeightRequest="16"
+                                            Aspect="Fill" />
+
             </controls:ContentButton>
-            <Label Grid.Row="1"  Text="Tutorial" TextColor="White" FontSize="20" VerticalOptions="End" HorizontalOptions="Center" Margin="0,0,0,10"/>
-          
-           
-            
+            <Label Grid.Row="1"
+                   Text="Tutorial"
+                   TextColor="White"
+                   FontSize="20"
+                   VerticalOptions="End"
+                   HorizontalOptions="Center"
+                   Margin="0,0,0,10" />
         </Grid>
     </ContentPage.Content>
 </views:BasePage>

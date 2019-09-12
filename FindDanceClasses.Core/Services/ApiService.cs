@@ -61,7 +61,7 @@ namespace FindDanceClasses.Core.Services
             {
                 var result = await GET_TICKETS_BY_COMPANY_AND_EVENT.SetQueryParam("companyId", companyId)
                     .SetQueryParam("eventId", eventId)
-                    .WithHeader("Token", AppSettings.Token).GetJsonAsync<List<Ticket>>();
+                    .WithHeader("Token", AppSettings.Token).WithBasicAuth(AppConstants.DEFAULT_USER_NAME, AppConstants.DEFAULT_PASSWORD).GetJsonAsync<List<Ticket>>();
 
                 return new ApiResponse<List<Ticket>>
                 {

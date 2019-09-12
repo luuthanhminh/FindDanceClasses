@@ -1,35 +1,167 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <views:BasePage
     xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="FindDanceClasses.UI.Pages.CheckinPage"
     xmlns:views="clr-namespace:FindDanceClasses.UI.Pages;assembly=FindDanceClasses.UI"
     xmlns:controls="clr-namespace:FindDanceClasses.UI.Controls;assembly=FindDanceClasses.UI"
     xmlns:viewModels="clr-namespace:FindDanceClasses.Core.ViewModels;assembly=FindDanceClasses.Core"
     x:TypeArguments="viewModels:CheckinViewModel"
-    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
-    >
+    xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms">
     <ContentPage.Content>
-      <Grid  RowSpacing="0" >
+        <Grid  RowSpacing="0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="38"/>
-                  <RowDefinition Height="50"/>
-                
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="38" />
+                <RowDefinition Height="50" />
+                <RowDefinition Height="74" />
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            
-            <BoxView BackgroundColor="#BE1177"  Grid.RowSpan="2"/>
-        
-           
-            <controls:ContentButton WidthRequest="50" HeightRequest="50" Command="{Binding OpenMenuCommand}" Grid.Row="1"  HorizontalOptions="Start" VerticalOptions="FillAndExpand">
-             
-                <ffimageloading:CachedImage Margin="12,0,0,13" Source="menu" VerticalOptions="End" HorizontalOptions="Start"  DownsampleToViewSize="true"   WidthRequest="23" HeightRequest="16"  Aspect="Fill"/>
-               
+
+            <BoxView BackgroundColor="#BE1177"
+                     Grid.RowSpan="2" />
+
+
+            <controls:ContentButton WidthRequest="50"
+                                    HeightRequest="50"
+                                    Command="{Binding OpenMenuCommand}"
+                                    Grid.Row="1"
+                                    HorizontalOptions="Start"
+                                    VerticalOptions="FillAndExpand">
+
+                <ffimageloading:CachedImage Margin="12,0,0,13"
+                                            Source="menu"
+                                            VerticalOptions="End"
+                                            HorizontalOptions="Start"
+                                            DownsampleToViewSize="true"
+                                            WidthRequest="23"
+                                            HeightRequest="16"
+                                            Aspect="Fill" />
+
             </controls:ContentButton>
-            <Label Grid.Row="1"  Text="Check-in" TextColor="White" FontSize="20" VerticalOptions="End" HorizontalOptions="Center" Margin="0,0,0,10"/>
-          
-           
-            
+            <Label Grid.Row="1"
+                   Text="Check-in"
+                   TextColor="White"
+                   FontSize="20"
+                   VerticalOptions="End"
+                   HorizontalOptions="Center"
+                   Margin="0,0,0,10" />
+            <Grid Grid.Row="2"
+                  BackgroundColor="White">
+                <Frame CornerRadius="5"
+                       HeightRequest="48"
+                       WidthRequest="261"
+                       Margin="12,0,0,0"
+                       Padding="0"
+                       HorizontalOptions="Start"
+                       VerticalOptions="Center"
+                       BackgroundColor="#EBEDF1"
+                       HasShadow="False">
+                    <Grid>
+                        <ffimageloading:CachedImage WidthRequest="17"
+                                                    HeightRequest="17"
+                                                    Aspect="AspectFill"
+                                                    Source="search"
+                                                    VerticalOptions="Center"
+                                                    HorizontalOptions="Start"
+                                                    Margin="12,0,0,0" />
+                        <controls:BorderlessEntry HorizontalOptions="Start"
+                                                  VerticalOptions="Center"
+                                                  FontSize="14"
+                                                  TextColor="Black"
+                                                  Placeholder="Search name, email or team"
+                                                  PlaceholderColor="#AEB0B4"
+                                                  Margin="40,0,10,0" />
+                    </Grid>
+                </Frame>
+                <ffimageloading:CachedImage VerticalOptions="Center"
+                                            HorizontalOptions="Start"
+                                            WidthRequest="15"
+                                            HeightRequest="22"
+                                            Margin="293,0,0,0"
+                                            Source="mic"
+                                            Aspect="AspectFill" />
+                <ffimageloading:CachedImage VerticalOptions="Center"
+                                            HorizontalOptions="End"
+                                            WidthRequest="23"
+                                            HeightRequest="23"
+                                            Margin="0,0,20,0"
+                                            Source="code"
+                                            Aspect="AspectFill" />
+            </Grid>
+            <BoxView Grid.Row="3"
+                     BackgroundColor="#F1F2F4" />
+
+            <syncfusion:SfListView Grid.Row="3"
+                                   ItemSize="83"
+                                   Margin="13,13,13,0"
+                                   IsScrollBarVisible="false"
+                                   ItemSpacing="0,0,0,13"
+                                   BackgroundColor="Transparent"
+                                   SelectionMode="Single"
+                                   SelectionBackgroundColor="Transparent"
+                                   DragStartMode="None"
+                                   ItemsSource="{Binding Tickets}"
+                                   SelectionGesture="Tap">
+                <syncfusion:SfListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.View>
+                                <Grid>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="110" />
+                                    </Grid.ColumnDefinitions>
+                                    <ffimageloading:CachedImage Grid.ColumnSpan="2"
+                                                                VerticalOptions="FillAndExpand"
+                                                                HorizontalOptions="Fill"
+                                                                Source="checkinBgToggled"
+                                                                Aspect="Fill"
+                                                                IsVisible="{Binding IsCheckedIn}" />
+                                    <ffimageloading:CachedImage Grid.ColumnSpan="2"
+                                                                VerticalOptions="FillAndExpand"
+                                                                HorizontalOptions="Fill"
+                                                                Source="checkinBgNotToggled"
+                                                                Aspect="Fill"
+                                                                IsVisible="{Binding IsNotCheckedIn}" />
+                                    <StackLayout Margin="22,11,5,0"
+                                                 Spacing="10">
+                                        <Label Text="{Binding FullName}"
+                                               TextColor="Black"
+                                               FontSize="16" />
+                                        <Label Text="{Binding Name}"
+                                               TextColor="#828282"
+                                               FontSize="12" />
+                                    </StackLayout>
+                                    <Switch Grid.Column="1"
+                                            VerticalOptions="Center"
+                                            HorizontalOptions="Start"
+                                            WidthRequest="44"
+                                            IsToggled="{Binding IsCheckedIn}"
+                                            OnColor="#BD1177" />
+                                    <ffimageloading:CachedImage Grid.Column="1"
+                                                                WidthRequest="25"
+                                                                HeightRequest="25"
+                                                                Source="info"
+                                                                Aspect="AspectFill"
+                                                                VerticalOptions="Center"
+                                                                HorizontalOptions="End"
+                                                                Margin="0,0,20,0" />
+                                </Grid>
+
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+                </syncfusion:SfListView.ItemTemplate>
+            </syncfusion:SfListView>
+            <ActivityIndicator Grid.RowSpan="4"
+                               BackgroundColor="Transparent"
+                               Color="#BE1177"
+                               VerticalOptions="Center"
+                               HorizontalOptions="Center"
+                               IsVisible="{Binding IsLoading}"
+                               IsRunning="{Binding IsLoading}" />
         </Grid>
     </ContentPage.Content>
 </views:BasePage>

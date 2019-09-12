@@ -25,9 +25,6 @@ namespace FindDanceClasses.Core.ViewModels
         readonly IMvxMessenger _messenger;
 
 
-
-
-
         #region Constructors
 
         public CheckinViewModel(IMvxNavigationService navigationService, IDialogService dialogService, IMvxLogProvider logProvider,
@@ -48,9 +45,26 @@ namespace FindDanceClasses.Core.ViewModels
         {
             await base.Initialize();
 
-
+            LoadData();
         }
 
+
+        #endregion
+
+        #region Properties
+
+        private ObservableCollection<TicketItemViewModel> _tickets = new ObservableCollection<TicketItemViewModel>();
+        public ObservableCollection<TicketItemViewModel> Tickets
+        {
+            get
+            {
+                return _tickets;
+            }
+            set
+            {
+                SetProperty(ref _tickets, value);
+            }
+        }
 
         #endregion
 
@@ -67,6 +81,42 @@ namespace FindDanceClasses.Core.ViewModels
         #endregion
 
 
+        #region Methods
 
+        async void LoadData()
+        {
+            try
+            {
+                ShowLoading();
+
+                var result = await _apiService.GetTickets(2669, 5315);
+
+                if (result.Err != null)
+                {
+                    await DialogService.ShowMessage(result.Err.Message);
+                }
+                else
+                {
+                    Tickets = new ObservableCollection<TicketItemViewModel>(result.Result.Select(t => new TicketItemViewModel()
+                    {
+                        QrCode = t.QrCode,
+                        IsCheckedIn = t.IsCheckedIn,
+                        IsNotCheckedIn = !t.IsCheckedIn,
+                        Name = t.Name,
+                        FullName = $"{t.LastName} {t.FirstName}"
+                    }));
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            finally
+            {
+                HideLoading();
+            }
+        }
+
+        #endregion
     }
 }

@@ -99,6 +99,7 @@
     <Compile Include="Setup.cs" />
     <Compile Include="Renderers\BorderlessEntryRenderer.cs" />
     <Compile Include="Services\PlatformService.cs" />
+    <Compile Include="Renderers\RoundedBoxViewRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
