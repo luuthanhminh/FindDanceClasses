@@ -70,7 +70,7 @@ namespace FindDanceClasses.Core.ViewModels
         {
             _messenger.Publish<MenuActionMessage>(new MenuActionMessage(this, false));
             await Task.Delay(DELAY_MENU_TIME);
-            await ClearStackAndNavigateToPage<HomeViewModel>();
+            await ClearStackAndNavigateToPage<EventsViewModel>();
         }
         #endregion
     }

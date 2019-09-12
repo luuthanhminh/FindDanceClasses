@@ -91,7 +91,7 @@ namespace FindDanceClasses.Core.ViewModels
                 {
                     UserName = this.Email,
                     Password = this.Password,
-                    RememberMe = true
+                    RememberMe = "true"
                 });
 
                 if (String.IsNullOrEmpty(result.Message))

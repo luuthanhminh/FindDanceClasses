@@ -69,7 +69,7 @@ namespace FindDanceClasses.Core.ViewModels
 
         private async Task ShowDetailViewModel()
         {
-            await NavigationService.Navigate<HomeViewModel>();
+            await NavigationService.Navigate<EventsViewModel>();
         }
 
         #region Commands

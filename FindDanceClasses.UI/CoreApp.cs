@@ -19,6 +19,9 @@ namespace FindDanceClasses.UI
                 .AsInterfaces()
                 .RegisterAsLazySingleton();
 
+            AppSettings.Token = "MDaug2s310gVjfDB1c3BTKB6yvdu+5ybbG8xNjUy";
+            AppSettings.UserId = "1652";
+
             if (String.IsNullOrEmpty(AppSettings.Token))
             {
                 RegisterAppStart<LoginViewModel>();

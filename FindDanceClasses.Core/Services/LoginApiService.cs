@@ -10,6 +10,7 @@ using Flurl.Http.Configuration;
 using System.Net.Http.Headers;
 using System.Text;
 using Newtonsoft.Json;
+using RestSharp;
 
 namespace FindDanceClasses.Core.Services
 {
@@ -29,24 +30,24 @@ namespace FindDanceClasses.Core.Services
             try
             {
 
-                HttpClient client = new HttpClient();
-                client.Timeout = TimeSpan.FromSeconds(15);
+                var client = new RestClient(LOGIN_URL);
 
-                var request = new HttpRequestMessage
+                var request = new RestRequest(Method.GET);
+
+                var t = JsonConvert.SerializeObject(model);
+
+                request.AddJsonBody(model);
+                request.AddHeader("Content-Type", "application/json");
+                //request.AddParameter("", "{\n\t\t\"UserName\" : \"daniel_filipe@outlook.com\", \n\t\t\"Password\" : \"TestyTesting99\", \n\t\t\"RememberMe\" : \"true\"\n}", ParameterType.RequestBody);
+                request.AddHeader("Authorization", "Basic ZmRjX0FwcGxlczpfaG93RG9Zb3VMaWtlVGhlbTkxX19f");
+
+
+                var asyncHandle = client.ExecuteAsync<LoginResponse>(request, response =>
                 {
-                    Method = HttpMethod.Get,
-                    RequestUri = new Uri(LOGIN_URL),
-                    Content = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json"),
-                };
+                    var result = response.Data;
+                });
 
-                var response = await client.SendAsync(request).ConfigureAwait(false);
-
-
-                var responseBody = await response.Content.ReadAsStringAsync();
-
-                var result = JsonConvert.DeserializeObject<LoginResponse>(responseBody);
-
-                return result;
+                return null;
             }
             catch (Exception ex)
             {

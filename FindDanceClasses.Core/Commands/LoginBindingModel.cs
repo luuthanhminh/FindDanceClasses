@@ -7,6 +7,6 @@ namespace FindDanceClasses.Core.Commands
 
         public string Password { get; set; }
 
-        public bool RememberMe { get; set; }
+        public string RememberMe { get; set; }
     }
 }

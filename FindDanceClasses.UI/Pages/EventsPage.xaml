@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<views:BasePage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="FindDanceClasses.UI.Pages.EventsPage"
+    xmlns:views="clr-namespace:FindDanceClasses.UI.Pages;assembly=FindDanceClasses.UI"
+    xmlns:controls="clr-namespace:FindDanceClasses.UI.Controls;assembly=FindDanceClasses.UI"
+    xmlns:viewModels="clr-namespace:FindDanceClasses.Core.ViewModels;assembly=FindDanceClasses.Core"
+    x:TypeArguments="viewModels:EventsViewModel"
+    xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+    xmlns:tabView="clr-namespace:Syncfusion.XForms.TabView;assembly=Syncfusion.SfTabView.XForms"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms">
+    <ContentPage.Content>
+        <Grid  RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="38" />
+                <RowDefinition Height="50" />
+
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <BoxView BackgroundColor="#BE1177"
+                     Grid.RowSpan="2" />
+
+
+            <controls:ContentButton WidthRequest="50"
+                                    HeightRequest="50"
+                                    Command="{Binding OpenMenuCommand}"
+                                    Grid.Row="1"
+                                    HorizontalOptions="Start"
+                                    VerticalOptions="FillAndExpand">
+
+                <ffimageloading:CachedImage Margin="12,0,0,13"
+                                            Source="menu"
+                                            VerticalOptions="End"
+                                            HorizontalOptions="Start"
+                                            DownsampleToViewSize="true"
+                                            WidthRequest="23"
+                                            HeightRequest="16"
+                                            Aspect="Fill" />
+
+            </controls:ContentButton>
+            <Label Grid.Row="1"
+                   Text="My Events"
+                   TextColor="White"
+                   FontSize="20"
+                   VerticalOptions="End"
+                   HorizontalOptions="Center"
+                   Margin="0,0,0,10" />
+            <BoxView Grid.Row="2"
+                     BackgroundColor="#F1F2F4" />
+
+            <StackLayout Margin="12,26,12,10"
+                         Spacing="0"
+                         HorizontalOptions="FillAndExpand"
+                         Grid.Row="2">
+                <Frame HasShadow="False"
+                       HeightRequest="40"
+                       Padding="0"
+                       IsClippedToBounds="True"
+                       CornerRadius="12"
+                       BackgroundColor="Transparent"
+                       BorderColor="#14458E">
+                    <Grid ColumnSpacing="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="1" />
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="1" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <BoxView Grid.Column="1"
+                                 HorizontalOptions="FillAndExpand"
+                                 BackgroundColor="#14458E" />
+                        <BoxView Grid.Column="3"
+                                 HorizontalOptions="FillAndExpand"
+                                 BackgroundColor="#14458E" />
+                        <Button BackgroundColor="{Binding LiveBgColor}"
+                                FontSize="14"
+                                Padding="0"
+                                CornerRadius="0"
+                                HorizontalOptions="FillAndExpand"
+                                Text="Live"
+                                TextColor="{Binding LiveTextColor}"
+                                Command="{Binding SelectTabCommand}"
+                                CommandParameter="0" />
+                        <Button Grid.Column="2"
+                                BackgroundColor="{Binding PastBgColor}"
+                                FontSize="14"
+                                Padding="0"
+                                CornerRadius="0"
+                                HorizontalOptions="FillAndExpand"
+                                Text="Past"
+                                TextColor="{Binding PastTextColor}"
+                                Command="{Binding SelectTabCommand}"
+                                CommandParameter="1" />
+                        <Button Grid.Column="4"
+                                Padding="0"
+                                CornerRadius="0"
+                                BackgroundColor="{Binding DraftBgColor}"
+                                HorizontalOptions="FillAndExpand"
+                                FontSize="14"
+                                Text="Draft"
+                                TextColor="{Binding DraftTextColor}"
+                                Command="{Binding SelectTabCommand}"
+                                CommandParameter="2" />
+                    </Grid>
+                </Frame>
+
+                <tabView:SfTabView TabHeaderBackgroundColor="Transparent"
+                                   BackgroundColor="Transparent"
+                                   VisibleHeaderCount="3"
+                                   EnableSwiping="False"
+                                   SelectedIndex="{Binding TabIndex}"
+                                   Margin="0,23,0,0"
+                                   DisplayMode="NoHeader">
+                    <tabView:SfTabItem>
+                        <tabView:SfTabItem.Content>
+                            <syncfusion:SfListView
+                                ItemSize="228"
+                                IsScrollBarVisible="false"
+                                ItemSpacing="0,0,0,16"
+                                BackgroundColor="Transparent"
+                                SelectionMode="Single"
+                                SelectionBackgroundColor="Transparent"
+                                DragStartMode="None"
+                                ItemsSource="{Binding LiveEvents}"
+                                SelectionGesture="Tap">
+                                <syncfusion:SfListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <ViewCell.View>
+                                                <Frame Padding="0"
+                                                       CornerRadius="5"
+                                                       HasShadow="True">
+                                                    <Grid>
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition Height="162" />
+                                                            <RowDefinition Height="*" />
+                                                        </Grid.RowDefinitions>
+                                                        <ffimageloading:CachedImage Source="bgclass"
+                                                                                    Aspect="AspectFill" />
+                                                        <BoxView BackgroundColor="White"
+                                                                 Grid.Row="1" />
+                                                        <StackLayout Spacing="5"
+                                                                     Grid.Row="1"
+                                                                     Margin="11,10,11,0">
+                                                            <Label Text="{Binding Name}"
+                                                                   TextColor="Black"
+                                                                   FontSize="16" />
+                                                            <Label Text="{Binding VenueAddress}"
+                                                                   TextColor="#828282"
+                                                                   LineBreakMode="TailTruncation"
+                                                                   FontSize="12" />
+                                                        </StackLayout>
+                                                    </Grid>
+                                                </Frame>
+
+                                            </ViewCell.View>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </syncfusion:SfListView.ItemTemplate>
+                            </syncfusion:SfListView>
+                        </tabView:SfTabItem.Content>
+                    </tabView:SfTabItem>
+                    <tabView:SfTabItem>
+                        <tabView:SfTabItem.Content>
+                            <Grid />
+                        </tabView:SfTabItem.Content>
+                    </tabView:SfTabItem>
+                    <tabView:SfTabItem>
+                        <tabView:SfTabItem.Content>
+                            <syncfusion:SfListView
+                                ItemSize="228"
+                                IsScrollBarVisible="false"
+                                ItemSpacing="0,0,0,16"
+                                BackgroundColor="Transparent"
+                                SelectionMode="Single"
+                                SelectionBackgroundColor="Transparent"
+                                DragStartMode="None"
+                                ItemsSource="{Binding DraftEvents}"
+                                SelectionGesture="Tap">
+                                <syncfusion:SfListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <ViewCell.View>
+                                                <Frame Padding="0"
+                                                       CornerRadius="5"
+                                                       HasShadow="True">
+                                                    <Grid>
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition Height="162" />
+                                                            <RowDefinition Height="*" />
+                                                        </Grid.RowDefinitions>
+                                                        <ffimageloading:CachedImage Source="bgclass"
+                                                                                    Aspect="AspectFill" />
+                                                        <BoxView BackgroundColor="White"
+                                                                 Grid.Row="1" />
+                                                        <StackLayout Spacing="5"
+                                                                     Grid.Row="1"
+                                                                     Margin="11,10,11,0">
+                                                            <Label Text="{Binding Name}"
+                                                                   TextColor="Black"
+                                                                   FontSize="16" />
+                                                            <Label Text="{Binding VenueAddress}"
+                                                                   TextColor="#828282"
+                                                                   LineBreakMode="TailTruncation"
+                                                                   FontSize="12" />
+                                                        </StackLayout>
+                                                    </Grid>
+                                                </Frame>
+
+                                            </ViewCell.View>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </syncfusion:SfListView.ItemTemplate>
+                            </syncfusion:SfListView>
+                        </tabView:SfTabItem.Content>
+                    </tabView:SfTabItem>
+                </tabView:SfTabView>
+
+
+
+            </StackLayout>
+
+            <ActivityIndicator Grid.RowSpan="3"
+                               BackgroundColor="Transparent"
+                               Color="#BE1177"
+                               VerticalOptions="Center"
+                               HorizontalOptions="Center"
+                               IsVisible="{Binding IsLoading}"
+                               IsRunning="{Binding IsLoading}" />
+        </Grid>
+    </ContentPage.Content>
+</views:BasePage>
+

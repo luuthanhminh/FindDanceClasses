@@ -9,23 +9,15 @@ namespace FindDanceClasses.Core.Models
 
         public string ProviderType { get; set; }
 
-        public string PleaseSelectHidden { get; set; }
-
         public string Description { get; set; }
 
         public int LocationID { get; set; }
 
         public int CompanyID { get; set; }
 
-        public int EmailID { get; set; }
-
         public int WebsiteID { get; set; }
 
         public int PhoneID { get; set; }
-
-        public int ProviderTypeID { get; set; }
-
-        public int ProviderPriceScheme { get; set; }
 
         public bool IsClassLive { get; set; }
 

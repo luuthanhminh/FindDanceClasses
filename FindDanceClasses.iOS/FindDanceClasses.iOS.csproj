@@ -282,5 +282,8 @@
     <BundleResource Include="Resources\bgEntry.png" />
     <BundleResource Include="Resources\bgEntry%402x.png" />
     <BundleResource Include="Resources\bgEntry%403x.png" />
+    <BundleResource Include="Resources\bgclass.jpg" />
+    <BundleResource Include="Resources\bgclass%402x.jpg" />
+    <BundleResource Include="Resources\bgclass%403x.jpg" />
   </ItemGroup>
 </Project>

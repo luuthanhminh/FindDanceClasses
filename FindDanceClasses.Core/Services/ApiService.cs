@@ -16,13 +16,13 @@ namespace FindDanceClasses.Core.Services
     public interface IApiService
     {
         Task<ApiResponse<List<Event>>> GetEvents(int companyId);
+
+        Task<ApiResponse<List<Ticket>>> GetTickets(int companyId, int eventId);
     }
 
     public class ApiService : BaseApiService, IApiService
     {
         const string BASE_URL = "https://www.finddanceclasses.co.uk/Api/MobileApi";
-
-
 
         const string GET_EVENTS_BY_COMPANY = BASE_URL + "/GetAllEventsByCompanyId";
 
@@ -34,12 +34,8 @@ namespace FindDanceClasses.Core.Services
         {
             try
             {
-                var result = await GET_EVENTS_BY_COMPANY.WithBasicAuth(AppConstants.DEFAULT_USER_NAME, AppConstants.DEFAULT_PASSWORD).SetQueryParams(new
-                {
-                    companyId = companyId
-                }).GetJsonAsync<List<Event>>();
-
-
+                var result = await GET_EVENTS_BY_COMPANY.SetQueryParam("companyId", companyId)
+                    .WithHeader("Token", AppSettings.Token).WithBasicAuth(AppConstants.DEFAULT_USER_NAME, AppConstants.DEFAULT_PASSWORD).GetJsonAsync<List<Event>>();
 
                 return new ApiResponse<List<Event>>
                 {
@@ -49,6 +45,32 @@ namespace FindDanceClasses.Core.Services
             catch (Exception ex)
             {
                 return new ApiResponse<List<Event>>
+                {
+                    Err = new Result()
+                    {
+                        IsError = true,
+                        Message = ex.Message
+                    }
+                };
+            }
+        }
+
+        public async Task<ApiResponse<List<Ticket>>> GetTickets(int companyId, int eventId)
+        {
+            try
+            {
+                var result = await GET_TICKETS_BY_COMPANY_AND_EVENT.SetQueryParam("companyId", companyId)
+                    .SetQueryParam("eventId", eventId)
+                    .WithHeader("Token", AppSettings.Token).GetJsonAsync<List<Ticket>>();
+
+                return new ApiResponse<List<Ticket>>
+                {
+                    Result = result
+                };
+            }
+            catch (Exception ex)
+            {
+                return new ApiResponse<List<Ticket>>
                 {
                     Err = new Result()
                     {
