@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Threading.Tasks;
+using MvvmCross.Commands;
+
 namespace FindDanceClasses.Core.ViewModels.Items
 {
     public class EventItemViewModel : BaseItemViewModel
@@ -44,5 +47,15 @@ namespace FindDanceClasses.Core.ViewModels.Items
                 SetProperty(ref _venueAddress, value);
             }
         }
+
+        //public IMvxAsyncCommand GoToCheckInCommand => new MvxAsyncCommand(GoToCheckIn);
+
+        //private async Task GoToCheckIn()
+        //{
+        //    if (this.ParentViewModel is EventsViewModel eventsViewModel)
+        //    {
+        //        await eventsViewModel.GoToCheckIn(this);
+        //    }
+        //}
     }
 }

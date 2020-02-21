@@ -23,6 +23,11 @@ namespace FindDanceClasses.Core.ViewModels
         Draft = 2
     }
 
+    public interface IEventsView
+    {
+        EventItemViewModel GetTappedItem(object selectedObj);
+    }
+
     public class EventsViewModel : BaseViewModel
     {
         readonly IApiService _apiService;
@@ -54,6 +59,8 @@ namespace FindDanceClasses.Core.ViewModels
         #endregion
 
         #region Fields
+
+        public IEventsView View { get; set; }
 
         List<EventItemViewModel> _allEvents = new List<EventItemViewModel>();
 
@@ -255,7 +262,8 @@ namespace FindDanceClasses.Core.ViewModels
                         Name = t.Name,
                         ClassID = t.ClassID,
                         IsClassLive = t.IsClassLive,
-                        VenueAddress = t.VenueAddress
+                        VenueAddress = t.VenueAddress,
+                        ParentViewModel = this
                     }).ToList();
 
                     LiveEvents = new ObservableCollection<EventItemViewModel>(_allEvents.Where(e => e.IsClassLive));
@@ -271,6 +279,26 @@ namespace FindDanceClasses.Core.ViewModels
                 HideLoading();
             }
         }
+
+        public IMvxAsyncCommand<object> GoToCheckInCommand => new MvxAsyncCommand<object>(GoToCheckIn);
+
+        private async Task GoToCheckIn(object item)
+        {
+            var selectedEvent = View?.GetTappedItem(item);
+
+            if (selectedEvent != null)
+            {
+                await NavigationService.Navigate<CheckinViewModel, int>(selectedEvent.ClassID);
+            }
+            await Task.CompletedTask;
+        }
+
+        //public async Task GoToCheckIn(EventItemViewModel item)
+        //{
+        //    await NavigationService.Navigate<CheckinViewModel, int>(item.ClassID);
+
+        //    await Task.CompletedTask;
+        //}
 
         #endregion
     }

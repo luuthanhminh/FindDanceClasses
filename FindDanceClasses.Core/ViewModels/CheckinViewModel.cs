@@ -18,11 +18,13 @@ namespace FindDanceClasses.Core.ViewModels
 {
 
 
-    public class CheckinViewModel : BaseViewModel
+    public class CheckinViewModel : BaseWithObjectViewModel<int>
     {
         readonly IApiService _apiService;
 
         readonly IMvxMessenger _messenger;
+
+        int _eventId;
 
 
         #region Constructors
@@ -40,6 +42,11 @@ namespace FindDanceClasses.Core.ViewModels
         #endregion
 
         #region Life cycle
+
+        public override void Prepare(int parameter)
+        {
+            _eventId = parameter;
+        }
 
         public override async Task Initialize()
         {
@@ -97,7 +104,7 @@ namespace FindDanceClasses.Core.ViewModels
             {
                 ShowLoading();
 
-                var result = await _apiService.GetTickets(2669, 5315);
+                var result = await _apiService.GetTickets(2669, _eventId);
 
                 if (result.Err != null)
                 {

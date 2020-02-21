@@ -125,6 +125,7 @@
                                 SelectionBackgroundColor="Transparent"
                                 DragStartMode="None"
                                 ItemsSource="{Binding LiveEvents}"
+                                TapCommand="{Binding GoToCheckInCommand}"
                                 SelectionGesture="Tap">
                                 <syncfusion:SfListView.ItemTemplate>
                                     <DataTemplate>
@@ -179,6 +180,7 @@
                                 SelectionBackgroundColor="Transparent"
                                 DragStartMode="None"
                                 ItemsSource="{Binding DraftEvents}"
+                                TapCommand="{Binding GoToCheckInCommand}"
                                 SelectionGesture="Tap">
                                 <syncfusion:SfListView.ItemTemplate>
                                     <DataTemplate>
