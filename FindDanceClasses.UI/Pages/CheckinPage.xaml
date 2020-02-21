@@ -8,7 +8,7 @@
     xmlns:viewModels="clr-namespace:FindDanceClasses.Core.ViewModels;assembly=FindDanceClasses.Core"
     x:TypeArguments="viewModels:CheckinViewModel"
     xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
-    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms">
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms">
     <ContentPage.Content>
         <Grid  RowSpacing="0">
             <Grid.RowDefinitions>
@@ -24,7 +24,7 @@
 
             <controls:ContentButton WidthRequest="50"
                                     HeightRequest="50"
-                                    Command="{Binding OpenMenuCommand}"
+                                    Command="{Binding CloseCommand}"
                                     Grid.Row="1"
                                     HorizontalOptions="Start"
                                     VerticalOptions="FillAndExpand">
@@ -165,13 +165,11 @@
                     </DataTemplate>
                 </syncfusion:SfListView.ItemTemplate>
             </syncfusion:SfListView>
-            <ActivityIndicator Grid.RowSpan="4"
-                               BackgroundColor="Transparent"
-                               Color="#BE1177"
-                               VerticalOptions="Center"
-                               HorizontalOptions="Center"
-                               IsVisible="{Binding IsLoading}"
-                               IsRunning="{Binding IsLoading}" />
+            <busyindicator:SfBusyIndicator Grid.RowSpan="4" BackgroundColor="Transparent" InputTransparent="True" ViewBoxWidth = "60"
+                                                    TextColor="{StaticResource LoadingColor}"
+                                                    Title="Loading"
+                                                    AnimationType="SingleCircle"
+                                       ViewBoxHeight="60"  HorizontalOptions="Center" VerticalOptions="Center" IsBusy="{Binding IsLoading}"  />
         </Grid>
     </ContentPage.Content>
 </views:BasePage>

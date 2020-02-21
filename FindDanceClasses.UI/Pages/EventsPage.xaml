@@ -9,7 +9,7 @@
     x:TypeArguments="viewModels:EventsViewModel"
     xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
     xmlns:tabView="clr-namespace:Syncfusion.XForms.TabView;assembly=Syncfusion.SfTabView.XForms"
-    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms">
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms" xmlns:syncEffectsView="clr-namespace:Syncfusion.XForms.EffectsView;assembly=Syncfusion.Core.XForms">
     <ContentPage.Content>
         <Grid  RowSpacing="0">
             <Grid.RowDefinitions>
@@ -121,7 +121,7 @@
                                 IsScrollBarVisible="false"
                                 ItemSpacing="0,0,0,16"
                                 BackgroundColor="Transparent"
-                                SelectionMode="Single"
+                                SelectionMode="None"
                                 SelectionBackgroundColor="Transparent"
                                 DragStartMode="None"
                                 ItemsSource="{Binding LiveEvents}"
@@ -131,32 +131,35 @@
                                     <DataTemplate>
                                         <ViewCell>
                                             <ViewCell.View>
-                                                <Frame Padding="0"
+                                                <syncEffectsView:SfEffectsView FadeOutRipple="True" RippleAnimationDuration="300"  TouchUpEffects="None" TouchDownEffects="Ripple" >
+
+
+                                                    <Frame Padding="0"
                                                        CornerRadius="5"
                                                        HasShadow="True">
-                                                    <Grid>
-                                                        <Grid.RowDefinitions>
-                                                            <RowDefinition Height="162" />
-                                                            <RowDefinition Height="*" />
-                                                        </Grid.RowDefinitions>
-                                                        <ffimageloading:CachedImage Source="bgclass"
+                                                        <Grid>
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition Height="162" />
+                                                                <RowDefinition Height="*" />
+                                                            </Grid.RowDefinitions>
+                                                            <ffimageloading:CachedImage Source="bgclass"
                                                                                     Aspect="AspectFill" />
-                                                        <BoxView BackgroundColor="White"
+                                                            <BoxView BackgroundColor="White"
                                                                  Grid.Row="1" />
-                                                        <StackLayout Spacing="5"
+                                                            <StackLayout Spacing="5"
                                                                      Grid.Row="1"
                                                                      Margin="11,10,11,0">
-                                                            <Label Text="{Binding Name}"
+                                                                <Label Text="{Binding Name}"
                                                                    TextColor="Black"
                                                                    FontSize="16" />
-                                                            <Label Text="{Binding VenueAddress}"
+                                                                <Label Text="{Binding VenueAddress}"
                                                                    TextColor="#828282"
                                                                    LineBreakMode="TailTruncation"
                                                                    FontSize="12" />
-                                                        </StackLayout>
-                                                    </Grid>
-                                                </Frame>
-
+                                                            </StackLayout>
+                                                        </Grid>
+                                                    </Frame>
+                                                </syncEffectsView:SfEffectsView>
                                             </ViewCell.View>
                                         </ViewCell>
                                     </DataTemplate>
@@ -176,7 +179,7 @@
                                 IsScrollBarVisible="false"
                                 ItemSpacing="0,0,0,16"
                                 BackgroundColor="Transparent"
-                                SelectionMode="Single"
+                                SelectionMode="None"
                                 SelectionBackgroundColor="Transparent"
                                 DragStartMode="None"
                                 ItemsSource="{Binding DraftEvents}"
@@ -186,32 +189,33 @@
                                     <DataTemplate>
                                         <ViewCell>
                                             <ViewCell.View>
-                                                <Frame Padding="0"
+                                                <syncEffectsView:SfEffectsView FadeOutRipple="True" RippleAnimationDuration="300"  TouchUpEffects="None" TouchDownEffects="Ripple">
+                                                    <Frame Padding="0"
                                                        CornerRadius="5"
                                                        HasShadow="True">
-                                                    <Grid>
-                                                        <Grid.RowDefinitions>
-                                                            <RowDefinition Height="162" />
-                                                            <RowDefinition Height="*" />
-                                                        </Grid.RowDefinitions>
-                                                        <ffimageloading:CachedImage Source="bgclass"
+                                                        <Grid>
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition Height="162" />
+                                                                <RowDefinition Height="*" />
+                                                            </Grid.RowDefinitions>
+                                                            <ffimageloading:CachedImage Source="bgclass"
                                                                                     Aspect="AspectFill" />
-                                                        <BoxView BackgroundColor="White"
+                                                            <BoxView BackgroundColor="White"
                                                                  Grid.Row="1" />
-                                                        <StackLayout Spacing="5"
+                                                            <StackLayout Spacing="5"
                                                                      Grid.Row="1"
                                                                      Margin="11,10,11,0">
-                                                            <Label Text="{Binding Name}"
+                                                                <Label Text="{Binding Name}"
                                                                    TextColor="Black"
                                                                    FontSize="16" />
-                                                            <Label Text="{Binding VenueAddress}"
+                                                                <Label Text="{Binding VenueAddress}"
                                                                    TextColor="#828282"
                                                                    LineBreakMode="TailTruncation"
                                                                    FontSize="12" />
-                                                        </StackLayout>
-                                                    </Grid>
-                                                </Frame>
-
+                                                            </StackLayout>
+                                                        </Grid>
+                                                    </Frame>
+                                                </syncEffectsView:SfEffectsView>
                                             </ViewCell.View>
                                         </ViewCell>
                                     </DataTemplate>
@@ -225,13 +229,12 @@
 
             </StackLayout>
 
-            <ActivityIndicator Grid.RowSpan="3"
-                               BackgroundColor="Transparent"
-                               Color="#BE1177"
-                               VerticalOptions="Center"
-                               HorizontalOptions="Center"
-                               IsVisible="{Binding IsLoading}"
-                               IsRunning="{Binding IsLoading}" />
+
+            <busyindicator:SfBusyIndicator Grid.RowSpan="3" BackgroundColor="Transparent" InputTransparent="True" ViewBoxWidth = "60"
+                                                    TextColor="{StaticResource LoadingColor}"
+                                                    Title="Loading"
+                                                    AnimationType="SingleCircle"
+                                       ViewBoxHeight="60"  HorizontalOptions="Center" VerticalOptions="Center" IsBusy="{Binding IsLoading}"  />
         </Grid>
     </ContentPage.Content>
 </views:BasePage>

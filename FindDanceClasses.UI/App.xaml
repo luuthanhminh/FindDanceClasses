@@ -1,22 +1,30 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Application xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="FindDanceClasses.UI.App">
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="FindDanceClasses.UI.App"
+             xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms">
     <Application.Resources>
-        
+
         <ResourceDictionary>
-            
-            <Color x:Key="LoadingColor">#29abdf</Color>
-            
-          
-           
+
+            <Color x:Key="LoadingColor">#BE1177</Color>
+
+
+
             <!--BASE TEMPLATE-->
-            
+
             <ControlTemplate x:Key="BaseTemplate">
                 <Grid BindingContext="{TemplateBinding BindingContext.DataContext}">
-                  
+
                     <ContentPresenter  />
-                    
-                    <ActivityIndicator  x:Name="ActLoder" Color="{StaticResource LoadingColor}" HorizontalOptions="Center" VerticalOptions="Center" IsVisible="{Binding IsLoading}" IsRunning="{Binding IsLoading}" />
-                   
+
+                    <busyindicator:SfBusyIndicator  x:Name="ActLoder" ViewBoxWidth = "60"
+                                                    TextColor="{StaticResource LoadingColor}"
+                                                    Title="Loading"
+                                                    BackgroundColor="Transparent"
+                                                    InputTransparent="True"
+                                                    AnimationType="SingleCircle"
+                                       ViewBoxHeight="60"  HorizontalOptions="Center" VerticalOptions="Center" IsBusy="{Binding IsLoading}"  />
+
                 </Grid>
             </ControlTemplate>
         </ResourceDictionary>

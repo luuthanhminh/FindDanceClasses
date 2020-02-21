@@ -5,8 +5,10 @@ using FindDanceClasses.UI;
 using Foundation;
 using MvvmCross.Forms.Platforms.Ios.Core;
 using Syncfusion.ListView.XForms.iOS;
+using Syncfusion.SfBusyIndicator.XForms.iOS;
 using Syncfusion.SfCarousel.XForms.iOS;
 using Syncfusion.SfRating.XForms.iOS;
+using Syncfusion.XForms.iOS.EffectsView;
 using UIKit;
 
 namespace FindDanceClasses.iOS
@@ -31,6 +33,8 @@ namespace FindDanceClasses.iOS
 
             SfListViewRenderer.Init();
             new SfCarouselRenderer();
+            new SfBusyIndicatorRenderer();
+            SfEffectsViewRenderer.Init();
             Syncfusion.SfDataGrid.XForms.iOS.SfDataGridRenderer.Init();
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init();
             Syncfusion.XForms.iOS.TabView.SfTabViewRenderer.Init();

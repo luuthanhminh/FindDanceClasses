@@ -14,7 +14,6 @@ using System.Diagnostics;
 
 namespace FindDanceClasses.UI.Pages
 {
-    [MvxMasterDetailPagePresentation]
     public partial class CheckinPage : BasePage<CheckinViewModel>
     {
         public CheckinPage()

@@ -9,7 +9,7 @@
     x:TypeArguments="viewModels:ScanViewModel"
     xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
      xmlns:zxing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms"
-    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms">
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms">
     <ContentPage.Content>
         <Grid  RowSpacing="0">
             <Grid.RowDefinitions>
@@ -59,13 +59,11 @@
                    Margin="0,0,0,10" />
 
 
-            <ActivityIndicator Grid.RowSpan="3"
-                               BackgroundColor="Transparent"
-                               Color="#BE1177"
-                               VerticalOptions="Center"
-                               HorizontalOptions="Center"
-                               IsVisible="{Binding IsLoading}"
-                               IsRunning="{Binding IsLoading}" />
+            <busyindicator:SfBusyIndicator Grid.RowSpan="3" BackgroundColor="Transparent" InputTransparent="True" ViewBoxWidth = "60"
+                                                    TextColor="{StaticResource LoadingColor}"
+                                                    Title="Loading"
+                                                    AnimationType="SingleCircle"
+                                       ViewBoxHeight="60"  HorizontalOptions="Center" VerticalOptions="Center" IsBusy="{Binding IsLoading}"  />
         </Grid>
     </ContentPage.Content>
 </views:BasePage>

@@ -288,6 +288,7 @@ namespace FindDanceClasses.Core.ViewModels
 
             if (selectedEvent != null)
             {
+                await Task.Delay(400);
                 await NavigationService.Navigate<CheckinViewModel, int>(selectedEvent.ClassID);
             }
             await Task.CompletedTask;

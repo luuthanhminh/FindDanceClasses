@@ -11,7 +11,7 @@ namespace FindDanceClasses.UI
         public App()
         {
 
-            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("OTAzNzZAMzEzNzJlMzEyZTMwUHc5WGEvdmFCc1dJT2psS1pDczBYUjJBMlVNaW1YOFBtUlJaSkhqTk1QVT0=");
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MjEzNDAzQDMxMzcyZTM0MmUzMFpETXVMYlNpMTEwa0dCSkhydjFjTzBWWjZTZStUTkFMclB2aXFLaWZvWGs9");
             InitializeComponent();
         }
 
