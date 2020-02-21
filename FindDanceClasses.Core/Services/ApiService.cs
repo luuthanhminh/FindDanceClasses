@@ -18,6 +18,8 @@ namespace FindDanceClasses.Core.Services
         Task<ApiResponse<List<Event>>> GetEvents(int companyId);
 
         Task<ApiResponse<List<Ticket>>> GetTickets(int companyId, int eventId);
+
+        Task<ApiResponse<bool>> CheckInQrCode(int companyId, int classId, string qrCode, bool checkIn);
     }
 
     public class ApiService : BaseApiService, IApiService
@@ -29,6 +31,34 @@ namespace FindDanceClasses.Core.Services
         const string GET_TICKETS_BY_COMPANY_AND_EVENT = BASE_URL + "/GetAllTicketsByCompanyAndEventId";
 
         const string CHECK_IN_USER_BY_QR_CODE = BASE_URL + "/CheckInUserByQrCode";
+
+        public async Task<ApiResponse<bool>> CheckInQrCode(int companyId, int classId, string qrCode, bool checkIn)
+        {
+            try
+            {
+                var result = await CHECK_IN_USER_BY_QR_CODE.SetQueryParam("companyId", companyId)
+                    .SetQueryParam("classId", classId)
+                    .SetQueryParam("qrCode", qrCode)
+                    .SetQueryParam("checkIn", checkIn)
+                    .WithHeader("Token", AppSettings.Token).WithBasicAuth(AppConstants.DEFAULT_USER_NAME, AppConstants.DEFAULT_PASSWORD).GetStringAsync();
+
+                return new ApiResponse<bool>
+                {
+                    Result = true
+                };
+            }
+            catch (Exception ex)
+            {
+                return new ApiResponse<bool>
+                {
+                    Err = new Result()
+                    {
+                        IsError = true,
+                        Message = "An error occurred"
+                    }
+                };
+            }
+        }
 
         public async Task<ApiResponse<List<Event>>> GetEvents(int companyId)
         {

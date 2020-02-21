@@ -70,10 +70,10 @@ namespace FindDanceClasses.Core.ViewModels
             try
             {
                 ShowLoading();
-#if DEBUG
-                Email = "daniel_filipe@outlook.com";
-                Password = "TestyTesting99";
-#endif
+                //#if DEBUG
+                //                Email = "daniel_filipe@outlook.com";
+                //                Password = "TestyTesting99";
+                //#endif
 
                 if (String.IsNullOrEmpty(Email))
                 {

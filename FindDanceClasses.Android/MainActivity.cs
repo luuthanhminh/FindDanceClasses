@@ -9,6 +9,7 @@ using Android.OS;
 using FindDanceClasses.UI;
 using MvvmCross.Forms.Platforms.Android.Views;
 using FFImageLoading.Forms.Platform;
+using ZXing.Mobile;
 
 namespace FindDanceClasses.Droid
 {
@@ -33,7 +34,14 @@ namespace FindDanceClasses.Droid
 
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init(true);
             AiForms.Renderers.Droid.SettingsViewInit.Init();
+            MobileBarcodeScanner.Initialize(Application);
 
+        }
+
+
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
+        {
+            global::ZXing.Net.Mobile.Android.PermissionsHandler.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
 }

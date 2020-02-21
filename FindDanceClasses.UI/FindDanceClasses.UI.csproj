@@ -24,6 +24,8 @@
     <PackageReference Include="Syncfusion.Xamarin.Expander" Version="17.1.0.41" />
     <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.5.909-pre" />
     <PackageReference Include="AiForms.SettingsView" Version="0.5.2" />
+    <PackageReference Include="ZXing.Net.Mobile.Forms" Version="2.4.1" />
+    <PackageReference Include="ZXing.Net.Mobile" Version="2.4.1" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FindDanceClasses.Core\FindDanceClasses.Core.csproj" />

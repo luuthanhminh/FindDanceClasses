@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<views:BasePage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="FindDanceClasses.UI.Pages.ScanPage"
+    xmlns:views="clr-namespace:FindDanceClasses.UI.Pages;assembly=FindDanceClasses.UI"
+    xmlns:controls="clr-namespace:FindDanceClasses.UI.Controls;assembly=FindDanceClasses.UI"
+    xmlns:viewModels="clr-namespace:FindDanceClasses.Core.ViewModels;assembly=FindDanceClasses.Core"
+    x:TypeArguments="viewModels:ScanViewModel"
+    xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+     xmlns:zxing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms">
+    <ContentPage.Content>
+        <Grid  RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="38" />
+                <RowDefinition Height="50" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Grid Grid.RowSpan="3">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="300"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <zxing:ZXingScannerView Grid.RowSpan="3" x:Name="_scanView" OnScanResult="Handle_OnScanResult" IsScanning="true"
+                                HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+                <BoxView Grid.RowSpan="3" BackgroundColor="Red" HeightRequest="2" VerticalOptions="Center" HorizontalOptions="FillAndExpand"></BoxView>
+                <BoxView Grid.Row="0" BackgroundColor="Black" Opacity="0.6"></BoxView>
+                <BoxView Grid.Row="2" BackgroundColor="Black" Opacity="0.6"></BoxView>
+            </Grid>
+
+            <BoxView BackgroundColor="#BE1177"
+                     Grid.RowSpan="2" />
+
+
+            <controls:ContentButton 
+                                    Command="{Binding CloseCommand}"
+                                    Grid.Row="1"
+                                    >
+
+                <Label Margin="12,0,0,10"
+                                           Text="Back"
+                                            VerticalOptions="End"
+                                            HorizontalOptions="Start"
+                                            TextColor="White"
+                                           FontSize="20"
+                                            />
+
+            </controls:ContentButton>
+            <Label Grid.Row="1"
+                   Text="Scan"
+                   TextColor="White"
+                   FontSize="20"
+                   VerticalOptions="End"
+                   HorizontalOptions="Center"
+                   Margin="0,0,0,10" />
+
+
+            <ActivityIndicator Grid.RowSpan="3"
+                               BackgroundColor="Transparent"
+                               Color="#BE1177"
+                               VerticalOptions="Center"
+                               HorizontalOptions="Center"
+                               IsVisible="{Binding IsLoading}"
+                               IsRunning="{Binding IsLoading}" />
+        </Grid>
+    </ContentPage.Content>
+</views:BasePage>
+

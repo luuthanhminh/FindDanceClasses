@@ -103,6 +103,12 @@
     <PackageReference Include="AiForms.SettingsView">
       <Version>0.5.2</Version>
     </PackageReference>
+    <PackageReference Include="ZXing.Net.Mobile.Forms">
+      <Version>2.4.1</Version>
+    </PackageReference>
+    <PackageReference Include="ZXing.Net.Mobile">
+      <Version>2.4.1</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
@@ -114,6 +120,7 @@
     <Compile Include="Renderers\BorderlessEntryRenderer.cs" />
     <Compile Include="Services\PlatformService.cs" />
     <Compile Include="Renderers\RoundedBoxViewRenderer.cs" />
+    <Compile Include="Renderers\AppZXingScannerViewRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

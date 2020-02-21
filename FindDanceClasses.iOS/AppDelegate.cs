@@ -37,6 +37,7 @@ namespace FindDanceClasses.iOS
             new SfRatingRenderer();
             Syncfusion.XForms.iOS.Accordion.SfAccordionRenderer.Init();
             AiForms.Renderers.iOS.SettingsViewInit.Init();
+            ZXing.Net.Mobile.Forms.iOS.Platform.Init();
 
             return base.FinishedLaunching(app, options);
         }

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using FindDanceClasses.Core.Commands;
+using FindDanceClasses.Core.Helpers;
 using FindDanceClasses.Core.Messages;
 using FindDanceClasses.Core.Services;
 using FindDanceClasses.Core.ViewModels.Items;
@@ -62,6 +63,16 @@ namespace FindDanceClasses.Core.ViewModels
         {
 
             _messenger.Publish(new MenuActionMessage(this, true));
+        }
+
+        public IMvxAsyncCommand LogoutCommand => new MvxAsyncCommand(Logout);
+
+        private async Task Logout()
+        {
+
+            AppSettings.Token = String.Empty;
+            AppSettings.UserId = String.Empty;
+            await ClearStackAndNavigateToPage<LoginViewModel>();
         }
 
         #endregion

@@ -81,13 +81,23 @@
                                             Margin="293,0,0,0"
                                             Source="mic"
                                             Aspect="AspectFill" />
-                <ffimageloading:CachedImage VerticalOptions="Center"
+
+                <controls:ContentButton
+                    
+                                           
+                     
+                                    Command="{Binding ScanCommand}"
+                                     
+                                    >
+                    <ffimageloading:CachedImage VerticalOptions="Center"
                                             HorizontalOptions="End"
-                                            WidthRequest="23"
-                                            HeightRequest="23"
-                                            Margin="0,0,20,0"
+                                           WidthRequest="23"
+                                                Margin="0,0,20,0"
+                                    HeightRequest="23"
                                             Source="code"
                                             Aspect="AspectFill" />
+                </controls:ContentButton>
+
             </Grid>
             <BoxView Grid.Row="3"
                      BackgroundColor="#F1F2F4" />

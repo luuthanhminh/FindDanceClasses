@@ -16,9 +16,13 @@ using MvvmCross.Plugin.Messenger;
 
 namespace FindDanceClasses.Core.ViewModels
 {
+    public interface IScanView
+    {
+        void StartScanning();
+        void StopScanning();
+    }
 
-
-    public class CheckinViewModel : BaseViewModel
+    public class ScanViewModel : BaseViewModel
     {
         readonly IApiService _apiService;
 
@@ -27,14 +31,11 @@ namespace FindDanceClasses.Core.ViewModels
 
         #region Constructors
 
-        public CheckinViewModel(IMvxNavigationService navigationService, IDialogService dialogService, IMvxLogProvider logProvider,
+        public ScanViewModel(IMvxNavigationService navigationService, IDialogService dialogService, IMvxLogProvider logProvider,
             IApiService apiService, IMvxMessenger messenger) : base(navigationService, dialogService, logProvider)
         {
             _apiService = apiService;
             _messenger = messenger;
-
-
-
         }
 
         #endregion
@@ -53,16 +54,18 @@ namespace FindDanceClasses.Core.ViewModels
 
         #region Properties
 
-        private ObservableCollection<TicketItemViewModel> _tickets = new ObservableCollection<TicketItemViewModel>();
-        public ObservableCollection<TicketItemViewModel> Tickets
+        public IScanView View { get; set; }
+
+        private bool _isScanning = true;
+        public bool IsScanning
         {
             get
             {
-                return _tickets;
+                return _isScanning;
             }
             set
             {
-                SetProperty(ref _tickets, value);
+                SetProperty(ref _isScanning, value);
             }
         }
 
@@ -70,59 +73,54 @@ namespace FindDanceClasses.Core.ViewModels
 
         #region Commands
 
-        public IMvxAsyncCommand OpenMenuCommand => new MvxAsyncCommand(OpenMenu);
 
-        private async Task OpenMenu()
-        {
-
-            _messenger.Publish(new MenuActionMessage(this, true));
-        }
-
-        public IMvxAsyncCommand ScanCommand => new MvxAsyncCommand(Scan);
-
-        private async Task Scan()
-        {
-
-            await this.NavigationService.Navigate<ScanViewModel>();
-        }
 
         #endregion
 
 
         #region Methods
 
-        async void LoadData()
+        bool isChecking = false;
+        public async void CheckIn(string qrCode)
         {
             try
             {
                 ShowLoading();
 
-                var result = await _apiService.GetTickets(2669, 5315);
+                if (!isChecking)
+                {
+                    isChecking = true;
+                    var result = await this._apiService.CheckInQrCode(2669, 5315, qrCode, true);
 
-                if (result.Err != null)
-                {
-                    await DialogService.ShowMessage(result.Err.Message);
-                }
-                else
-                {
-                    Tickets = new ObservableCollection<TicketItemViewModel>(result.Result.Select(t => new TicketItemViewModel()
+                    if (result.Err != null)
                     {
-                        QrCode = t.QrCode,
-                        IsCheckedIn = t.IsCheckedIn,
-                        IsNotCheckedIn = !t.IsCheckedIn,
-                        Name = t.Name,
-                        FullName = $"{t.LastName} {t.FirstName}"
-                    }));
+                        await DialogService.ShowMessage(result.Err.Message);
+                    }
+                    else
+                    {
+                        await DialogService.ShowMessage("Checkin", "Success", "OK");
+                    }
                 }
+
+
+
+
             }
             catch (Exception ex)
             {
-
+                await DialogService.ShowMessage("Error", ex.Message, "OK");
             }
             finally
             {
                 HideLoading();
+
+                isChecking = false;
             }
+        }
+
+        async void LoadData()
+        {
+
         }
 
         #endregion

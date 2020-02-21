@@ -1,73 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<views:BasePage
-    xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-    x:Class="FindDanceClasses.UI.Pages.SettingsPage"
-    xmlns:views="clr-namespace:FindDanceClasses.UI.Pages;assembly=FindDanceClasses.UI"
-    xmlns:controls="clr-namespace:FindDanceClasses.UI.Controls;assembly=FindDanceClasses.UI"
-    xmlns:viewModels="clr-namespace:FindDanceClasses.Core.ViewModels;assembly=FindDanceClasses.Core"
-    x:TypeArguments="viewModels:SettingsViewModel"
-    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
-    >
+<views:BasePage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="FindDanceClasses.UI.Pages.SettingsPage" xmlns:views="clr-namespace:FindDanceClasses.UI.Pages;assembly=FindDanceClasses.UI" xmlns:controls="clr-namespace:FindDanceClasses.UI.Controls;assembly=FindDanceClasses.UI" xmlns:viewModels="clr-namespace:FindDanceClasses.Core.ViewModels;assembly=FindDanceClasses.Core" x:TypeArguments="viewModels:SettingsViewModel" xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms">
     <ContentPage.Content>
-      <Grid  RowSpacing="0" >
+        <Grid  RowSpacing="0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="38"/>
-                  <RowDefinition Height="50"/>
-                
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="38" />
+                <RowDefinition Height="50" />
+
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            
-            <BoxView BackgroundColor="#BE1177"  Grid.RowSpan="2"/>
-        
-           
-            <controls:ContentButton WidthRequest="50" HeightRequest="50" Command="{Binding OpenMenuCommand}" Grid.Row="1"  HorizontalOptions="Start" VerticalOptions="FillAndExpand">
-             
-                <ffimageloading:CachedImage Margin="12,0,0,13" Source="menu" VerticalOptions="End" HorizontalOptions="Start"  DownsampleToViewSize="true"   WidthRequest="23" HeightRequest="16"  Aspect="Fill"/>
-               
+
+            <BoxView BackgroundColor="#BE1177" Grid.RowSpan="2" />
+
+
+            <controls:ContentButton WidthRequest="50" HeightRequest="50" Command="{Binding OpenMenuCommand}" Grid.Row="1" HorizontalOptions="Start" VerticalOptions="FillAndExpand">
+
+                <ffimageloading:CachedImage Margin="12,0,0,13" Source="menu" VerticalOptions="End" HorizontalOptions="Start" DownsampleToViewSize="true" WidthRequest="23" HeightRequest="16" Aspect="Fill" />
+
             </controls:ContentButton>
-            <Label Grid.Row="1"  Text="My Settings" TextColor="White" FontSize="20" VerticalOptions="End" HorizontalOptions="Center" Margin="0,0,0,10"/>
-            <BoxView Grid.Row="2" BackgroundColor="#F1F2F4"/>
+            <Label Grid.Row="1" Text="My Settings" TextColor="White" FontSize="20" VerticalOptions="End" HorizontalOptions="Center" Margin="0,0,0,10" />
+            <BoxView Grid.Row="2" BackgroundColor="#F1F2F4" />
             <ScrollView Grid.Row="2" Padding="0,0,0,79">
                 <StackLayout Spacing="0" HorizontalOptions="FillAndExpand">
-                     <Label Text="Account Information"  TextColor="Black" FontSize="13" Margin="13,36,0,0"/>
+                    <Label Text="Account Information" TextColor="Black" FontSize="13" Margin="13,36,0,0" />
                     <Grid BackgroundColor="White" Margin="0,7,0,0" HeightRequest="56">
-                         <Label Margin="13,0,0,0" Text="info@finddanceclasses.co.uk" TextColor="Black" FontSize="16" HorizontalOptions="Start" VerticalOptions="Center"/>
-                         <Image Margin="0,0,18,0" Source="rightArrow" WidthRequest="14.5" HorizontalOptions="End" VerticalOptions="Center" Aspect="AspectFit"/>
+                        <Label Margin="13,0,0,0" Text="info@finddanceclasses.co.uk" TextColor="Black" FontSize="16" HorizontalOptions="Start" VerticalOptions="Center" />
+                        <Image Margin="0,0,18,0" Source="rightArrow" WidthRequest="14.5" HorizontalOptions="End" VerticalOptions="Center" Aspect="AspectFit" />
                     </Grid>
-                      <Label Text="Device Name"  TextColor="Black" FontSize="13" Margin="13,24,0,0"/>
-                     <Grid BackgroundColor="White" Margin="0,7,0,0" HeightRequest="56">
-                         <Label Margin="13,0,0,0" Text="info@finddanceclasses.co.uk" TextColor="Black" FontSize="16" HorizontalOptions="Start" VerticalOptions="Center"/>
-                         <Image Margin="0,0,18,0" Source="rightArrow" WidthRequest="14.5" HorizontalOptions="End" VerticalOptions="Center" Aspect="AspectFit"/>
+                    <Label Text="Device Name" TextColor="Black" FontSize="13" Margin="13,24,0,0" />
+                    <Grid BackgroundColor="White" Margin="0,7,0,0" HeightRequest="56">
+                        <Label Margin="13,0,0,0" Text="info@finddanceclasses.co.uk" TextColor="Black" FontSize="16" HorizontalOptions="Start" VerticalOptions="Center" />
+                        <Image Margin="0,0,18,0" Source="rightArrow" WidthRequest="14.5" HorizontalOptions="End" VerticalOptions="Center" Aspect="AspectFit" />
                     </Grid>
                     <StackLayout Orientation="Horizontal" Spacing="2" Margin="13,24,0,0">
-                         <Label Text="About"  TextColor="Black" FontSize="13" />
-                         <Label Text="Version 2.50  © 2019 FindDanceClasses"  TextColor="#9F9F9F" FontSize="13" />
+                        <Label Text="About" TextColor="Black" FontSize="13" />
+                        <Label Text="Version 2.50  © 2019 FindDanceClasses" TextColor="#9F9F9F" FontSize="13" />
                     </StackLayout>
-                      <Grid BackgroundColor="White" Margin="0,7,0,0" HeightRequest="56">
-                         <Label Margin="13,0,0,0" Text="Privacy Policy" TextColor="Black" FontSize="16" HorizontalOptions="Start" VerticalOptions="Center"/>
-                         <Image Margin="0,0,18,0" Source="rightArrow" WidthRequest="14.5" HorizontalOptions="End" VerticalOptions="Center" Aspect="AspectFit"/>
+                    <Grid BackgroundColor="White" Margin="0,7,0,0" HeightRequest="56">
+                        <Label Margin="13,0,0,0" Text="Privacy Policy" TextColor="Black" FontSize="16" HorizontalOptions="Start" VerticalOptions="Center" />
+                        <Image Margin="0,0,18,0" Source="rightArrow" WidthRequest="14.5" HorizontalOptions="End" VerticalOptions="Center" Aspect="AspectFit" />
                     </Grid>
-                   <Grid BackgroundColor="White" Margin="0,1,0,0" HeightRequest="56">
-                         <Label Margin="13,0,0,0" Text="Terms and Conditions" TextColor="Black" FontSize="16" HorizontalOptions="Start" VerticalOptions="Center"/>
-                         <Image Margin="0,0,18,0" Source="rightArrow" WidthRequest="14.5" HorizontalOptions="End" VerticalOptions="Center" Aspect="AspectFit"/>
+                    <Grid BackgroundColor="White" Margin="0,1,0,0" HeightRequest="56">
+                        <Label Margin="13,0,0,0" Text="Terms and Conditions" TextColor="Black" FontSize="16" HorizontalOptions="Start" VerticalOptions="Center" />
+                        <Image Margin="0,0,18,0" Source="rightArrow" WidthRequest="14.5" HorizontalOptions="End" VerticalOptions="Center" Aspect="AspectFit" />
                     </Grid>
-                     <Grid BackgroundColor="White" Margin="0,1,0,0" HeightRequest="56">
-                         <Label Margin="13,0,0,0" Text="Help Center" TextColor="Black" FontSize="16" HorizontalOptions="Start" VerticalOptions="Center"/>
-                         <Image Margin="0,0,18,0" Source="rightArrow" WidthRequest="14.5" HorizontalOptions="End" VerticalOptions="Center" Aspect="AspectFit"/>
+                    <Grid BackgroundColor="White" Margin="0,1,0,0" HeightRequest="56">
+                        <Label Margin="13,0,0,0" Text="Help Center" TextColor="Black" FontSize="16" HorizontalOptions="Start" VerticalOptions="Center" />
+                        <Image Margin="0,0,18,0" Source="rightArrow" WidthRequest="14.5" HorizontalOptions="End" VerticalOptions="Center" Aspect="AspectFit" />
                     </Grid>
-                     <Grid BackgroundColor="White" Margin="0,1,0,0" HeightRequest="56">
-                         <Label Margin="13,0,0,0" Text="Contact Us" TextColor="#BE1177" FontSize="16" HorizontalOptions="Start" VerticalOptions="Center"/>
-                         <Image Margin="0,0,18,0" Source="rightArrow" WidthRequest="14.5" HorizontalOptions="End" VerticalOptions="Center" Aspect="AspectFit"/>
+                    <Grid BackgroundColor="White" Margin="0,1,0,0" HeightRequest="56">
+                        <Label Margin="13,0,0,0" Text="Contact Us" TextColor="#BE1177" FontSize="16" HorizontalOptions="Start" VerticalOptions="Center" />
+                        <Image Margin="0,0,18,0" Source="rightArrow" WidthRequest="14.5" HorizontalOptions="End" VerticalOptions="Center" Aspect="AspectFit" />
                     </Grid>
                     <Grid BackgroundColor="White" Margin="0,105,0,0" HeightRequest="56">
-                         <Label Margin="13,0,0,0" Text="Log Out" TextColor="#BE1177" FontSize="16"  HorizontalOptions="Center" VerticalOptions="Center"/>
-                         
+                        <controls:ContentButton Command="{Binding LogoutCommand}">
+                            <Label Margin="13,0,0,0" Text="Log Out" TextColor="#BE1177" FontSize="16" HorizontalOptions="Center" VerticalOptions="Center" />
+                        </controls:ContentButton>
+
+
                     </Grid>
-                     
+
                 </StackLayout>
             </ScrollView>
-            
+
         </Grid>
     </ContentPage.Content>
 </views:BasePage>
