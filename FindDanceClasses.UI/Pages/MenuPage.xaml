@@ -11,54 +11,54 @@
                 >
     <ContentPage.Content>
         <Grid BackgroundColor="White" RowSpacing="0" >
-         <Grid.RowDefinitions>
+            <Grid.RowDefinitions>
                 <RowDefinition Height="38"/>
-                 <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-           
+
             <ScrollView Grid.Row="1" Padding="18,17,0,0">
-           <StackLayout Spacing="0" >
-                <Label Text="Test Event" TextColor="Black" FontSize="21"/>
-                 <controls:ContentButton >
-                                <Grid HorizontalOptions="Start"   HeightRequest="27"> 
-                                    <ffimageloading:CachedImage Source="btnSmall" Aspect="AspectFit"/>
-                                    <Label Text="Change Event" TextColor="White" FontSize="12" VerticalOptions="Center" HorizontalOptions="Center"/>
-                                </Grid>
-                </controls:ContentButton>
-                    
-                <StackLayout Orientation="Horizontal"/>
-                   <controls:ContentButton Command="{Binding GoToCheckinCommand}">
+                <StackLayout Spacing="0" >
+                    <Label Text="Test Event" TextColor="Black" FontSize="21"/>
+                    <controls:ContentButton >
+                        <Grid HorizontalOptions="Start"   HeightRequest="27">
+                            <ffimageloading:CachedImage Source="btnSmall" Aspect="AspectFit"/>
+                            <Label Text="Change Event" TextColor="White" FontSize="12" VerticalOptions="Center" HorizontalOptions="Center"/>
+                        </Grid>
+                    </controls:ContentButton>
+
+                    <StackLayout Orientation="Horizontal"/>
+                    <!--<controls:ContentButton Command="{Binding GoToCheckinCommand}">
                                 <StackLayout Margin="0,45,0,0" Spacing="17" HorizontalOptions="Start" Orientation="Horizontal"> 
                                     <ffimageloading:CachedImage WidthRequest="20" VerticalOptions="Center" Source="Checkin" Aspect="AspectFit"/>
                                     <Label Text="Check-in" TextColor="Black" FontSize="16" VerticalOptions="Center" />
                                 </StackLayout>
-                </controls:ContentButton>
-                 <controls:ContentButton Command="{Binding GoToHomeCommand}">
-                                <StackLayout Margin="0,45,0,0" Spacing="17" HorizontalOptions="Start" Orientation="Horizontal"> 
-                                    <ffimageloading:CachedImage WidthRequest="23" VerticalOptions="Center" Source="Dashboard" Aspect="AspectFit"/>
-                                    <Label Text="Dashboard" TextColor="Black" FontSize="16" VerticalOptions="Center" />
-                                </StackLayout>
-                </controls:ContentButton>
-                 <controls:ContentButton Command="{Binding GoToEventSetupCommand}">
-                                <StackLayout Margin="0,45,0,0" Spacing="17" HorizontalOptions="Start" Orientation="Horizontal"> 
-                                    <ffimageloading:CachedImage WidthRequest="20" VerticalOptions="Center" Source="Event" Aspect="AspectFit"/>
-                                    <Label Text="Event Set-up" TextColor="Black" FontSize="16" VerticalOptions="Center" />
-                                </StackLayout>
-                </controls:ContentButton>
-                      <controls:ContentButton Command="{Binding GoToTutorialCommand}">
-                                <StackLayout Margin="0,45,0,0" Spacing="17" HorizontalOptions="Start" Orientation="Horizontal"> 
-                                    <ffimageloading:CachedImage WidthRequest="24.9" VerticalOptions="Center" Source="Tutorial" Aspect="AspectFit"/>
-                                    <Label Text="Tutorial" TextColor="Black" FontSize="16" VerticalOptions="Center" />
-                                </StackLayout>
-                </controls:ContentButton>
-                     <controls:ContentButton Command="{Binding GoToSettingsCommand}">
-                                <StackLayout Margin="0,45,0,0" Spacing="17" HorizontalOptions="Start" Orientation="Horizontal"> 
-                                    <ffimageloading:CachedImage WidthRequest="22" VerticalOptions="Center" Source="Settings" Aspect="AspectFit"/>
-                                    <Label Text="My Settings" TextColor="Black" FontSize="16" VerticalOptions="Center" />
-                                </StackLayout>
-                </controls:ContentButton>
-            </StackLayout>
-            </ScrollView>    
+                </controls:ContentButton>-->
+                    <controls:ContentButton Command="{Binding GoToHomeCommand}">
+                        <StackLayout Margin="0,45,0,0" Spacing="17" HorizontalOptions="Start" Orientation="Horizontal">
+                            <ffimageloading:CachedImage WidthRequest="23" VerticalOptions="Center" Source="Dashboard" Aspect="AspectFit"/>
+                            <Label Text="Events" TextColor="Black" FontSize="16" VerticalOptions="Center" />
+                        </StackLayout>
+                    </controls:ContentButton>
+                    <controls:ContentButton Command="{Binding GoToEventSetupCommand}">
+                        <StackLayout Margin="0,45,0,0" Spacing="17" HorizontalOptions="Start" Orientation="Horizontal">
+                            <ffimageloading:CachedImage WidthRequest="20" VerticalOptions="Center" Source="Event" Aspect="AspectFit"/>
+                            <Label Text="Event Set-up" TextColor="Black" FontSize="16" VerticalOptions="Center" />
+                        </StackLayout>
+                    </controls:ContentButton>
+                    <controls:ContentButton Command="{Binding GoToTutorialCommand}">
+                        <StackLayout Margin="0,45,0,0" Spacing="17" HorizontalOptions="Start" Orientation="Horizontal">
+                            <ffimageloading:CachedImage WidthRequest="24.9" VerticalOptions="Center" Source="Tutorial" Aspect="AspectFit"/>
+                            <Label Text="Tutorial" TextColor="Black" FontSize="16" VerticalOptions="Center" />
+                        </StackLayout>
+                    </controls:ContentButton>
+                    <controls:ContentButton Command="{Binding GoToSettingsCommand}">
+                        <StackLayout Margin="0,45,0,0" Spacing="17" HorizontalOptions="Start" Orientation="Horizontal">
+                            <ffimageloading:CachedImage WidthRequest="22" VerticalOptions="Center" Source="Settings" Aspect="AspectFit"/>
+                            <Label Text="My Settings" TextColor="Black" FontSize="16" VerticalOptions="Center" />
+                        </StackLayout>
+                    </controls:ContentButton>
+                </StackLayout>
+            </ScrollView>
         </Grid>
     </ContentPage.Content>
 </views:BasePage>

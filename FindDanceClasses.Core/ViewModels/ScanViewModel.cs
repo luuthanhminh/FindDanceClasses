@@ -22,12 +22,13 @@ namespace FindDanceClasses.Core.ViewModels
         void StopScanning();
     }
 
-    public class ScanViewModel : BaseViewModel
+    public class ScanViewModel : BaseWithObjectAndReturnViewModel<int, string>
     {
         readonly IApiService _apiService;
 
         readonly IMvxMessenger _messenger;
 
+        int _classId;
 
         #region Constructors
 
@@ -45,8 +46,16 @@ namespace FindDanceClasses.Core.ViewModels
         public override async Task Initialize()
         {
             await base.Initialize();
+        }
 
-            LoadData();
+        public override void Prepare(int parameter)
+        {
+            _classId = parameter;
+        }
+
+        protected override async Task ClosePage()
+        {
+            await this.NavigationService.Close(this, String.Empty);
         }
 
 
@@ -90,7 +99,7 @@ namespace FindDanceClasses.Core.ViewModels
                 if (!isChecking)
                 {
                     isChecking = true;
-                    var result = await this._apiService.CheckInQrCode(2669, 5315, qrCode, true);
+                    var result = await this._apiService.CheckInQrCode(2669, _classId, qrCode, true);
 
                     if (result.Err != null)
                     {
@@ -98,7 +107,9 @@ namespace FindDanceClasses.Core.ViewModels
                     }
                     else
                     {
-                        await DialogService.ShowMessage("Checkin", "Success", "OK");
+                        await this.NavigationService.Close(this, qrCode);
+                        //await DialogService.ShowMessage("Checkin", "Success", "OK");
+
                     }
                 }
 
@@ -116,11 +127,6 @@ namespace FindDanceClasses.Core.ViewModels
 
                 isChecking = false;
             }
-        }
-
-        async void LoadData()
-        {
-
         }
 
         #endregion

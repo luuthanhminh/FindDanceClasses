@@ -16,6 +16,7 @@ namespace FindDanceClasses.Core.ViewModels.Items
             set
             {
                 SetProperty(ref _isCheckedIn, value);
+                IsNotCheckedIn = !value;
             }
         }
 
@@ -58,6 +59,18 @@ namespace FindDanceClasses.Core.ViewModels.Items
             }
         }
 
+        private int _singleChargeItemID;
+        public int SingleChargeItemID
+        {
+            get
+            {
+                return _singleChargeItemID;
+            }
+            set
+            {
+                SetProperty(ref _singleChargeItemID, value);
+            }
+        }
 
     }
 }

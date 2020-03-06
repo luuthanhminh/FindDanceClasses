@@ -15,9 +15,6 @@ using ZXing;
 
 namespace FindDanceClasses.UI.Pages
 {
-
-
-    [MvxMasterDetailPagePresentation]
     public partial class ScanPage : BasePage<ScanViewModel>, IScanView
     {
         public ScanPage()

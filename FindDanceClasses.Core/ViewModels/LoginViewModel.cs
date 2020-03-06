@@ -35,6 +35,33 @@ namespace FindDanceClasses.Core.ViewModels
             }
         }
 
+
+        //private string _error;
+        //public string Error
+        //{
+        //    get
+        //    {
+        //        return _error;
+        //    }
+        //    set
+        //    {
+        //        SetProperty(ref _error, value);
+        //    }
+        //}
+
+        //private bool _canlogin = true;
+        //public bool CanLogin
+        //{
+        //    get
+        //    {
+        //        return _canlogin;
+        //    }
+        //    set
+        //    {
+        //        SetProperty(ref _canlogin, value);
+        //    }
+        //}
+
         #endregion
 
         #region Password
@@ -71,8 +98,8 @@ namespace FindDanceClasses.Core.ViewModels
             {
                 ShowLoading();
                 //#if DEBUG
-                //                Email = "daniel_filipe@outlook.com";
-                //                Password = "TestyTesting99";
+                //Email = "daniel_filipe@outlook.com";
+                //Password = "TestyTesting99";
                 //#endif
 
                 if (String.IsNullOrEmpty(Email))

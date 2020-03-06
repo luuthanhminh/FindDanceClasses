@@ -11,7 +11,7 @@ namespace FindDanceClasses.Core.CommandResults
 
         public string Token { get; set; }
 
-        public DateTimeOffset TokenExpiryDate { get; set; }
+        //public DateTimeOffset TokenExpiryDate { get; set; }
 
         public string Message { get; set; }
     }

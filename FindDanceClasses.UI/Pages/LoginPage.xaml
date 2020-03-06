@@ -13,7 +13,8 @@
             <ffimageloading:CachedImage Source="bgImage"  Aspect="Fill"/>
             <ScrollView Margin="0,94,0,0" Padding="0,0,0,104">
                 <StackLayout Spacing="0" HorizontalOptions="Center">
-                    <Grid WidthRequest="337" HeightRequest="550">
+
+                    <Grid WidthRequest="337"  HeightRequest="550">
                         <ffimageloading:CachedImage  Source="bglogin"  Aspect="Fill"/>
                         <StackLayout Spacing="0">
                             <ffimageloading:CachedImage Source="logobig" HorizontalOptions="Center" Margin="0,33,0,0" DownsampleToViewSize="true" WidthRequest="122" HeightRequest="60" Aspect="AspectFill"/>
@@ -55,7 +56,7 @@
 
             <busyindicator:SfBusyIndicator  BackgroundColor="Transparent" InputTransparent="True" ViewBoxWidth = "60"
                                                     TextColor="{StaticResource LoadingColor}"
-                                                    Title="Loading"
+                                                    Title=""
                                                     AnimationType="SingleCircle"
                                        ViewBoxHeight="60"  HorizontalOptions="Center" VerticalOptions="Center" IsBusy="{Binding IsLoading}"  />
         </Grid>

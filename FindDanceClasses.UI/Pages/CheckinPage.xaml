@@ -22,21 +22,29 @@
                      Grid.RowSpan="2" />
 
 
-            <controls:ContentButton WidthRequest="50"
+            <controls:ContentButton WidthRequest="70"
                                     HeightRequest="50"
                                     Command="{Binding CloseCommand}"
                                     Grid.Row="1"
                                     HorizontalOptions="Start"
                                     VerticalOptions="FillAndExpand">
 
-                <ffimageloading:CachedImage Margin="12,0,0,13"
+                <!--<ffimageloading:CachedImage Margin="12,0,0,13"
                                             Source="menu"
                                             VerticalOptions="End"
                                             HorizontalOptions="Start"
                                             DownsampleToViewSize="true"
                                             WidthRequest="23"
                                             HeightRequest="16"
-                                            Aspect="Fill" />
+                                            Aspect="Fill" />-->
+
+                <Label Margin="12,0,0,10"
+                                           Text="Back"
+                                            VerticalOptions="End"
+                                            HorizontalOptions="Start"
+                                            TextColor="White"
+                                           FontSize="20"
+                                            />
 
             </controls:ContentButton>
             <Label Grid.Row="1"
@@ -48,32 +56,6 @@
                    Margin="0,0,0,10" />
             <Grid Grid.Row="2"
                   BackgroundColor="White">
-                <Frame CornerRadius="5"
-                       HeightRequest="48"
-                       WidthRequest="261"
-                       Margin="12,0,0,0"
-                       Padding="0"
-                       HorizontalOptions="Start"
-                       VerticalOptions="Center"
-                       BackgroundColor="#EBEDF1"
-                       HasShadow="False">
-                    <Grid>
-                        <ffimageloading:CachedImage WidthRequest="17"
-                                                    HeightRequest="17"
-                                                    Aspect="AspectFill"
-                                                    Source="search"
-                                                    VerticalOptions="Center"
-                                                    HorizontalOptions="Start"
-                                                    Margin="12,0,0,0" />
-                        <controls:BorderlessEntry HorizontalOptions="Start"
-                                                  VerticalOptions="Center"
-                                                  FontSize="14"
-                                                  TextColor="Black"
-                                                  Placeholder="Search name, email or team"
-                                                  PlaceholderColor="#AEB0B4"
-                                                  Margin="40,0,10,0" />
-                    </Grid>
-                </Frame>
                 <ffimageloading:CachedImage VerticalOptions="Center"
                                             HorizontalOptions="Start"
                                             WidthRequest="15"
@@ -97,6 +79,34 @@
                                             Source="code"
                                             Aspect="AspectFill" />
                 </controls:ContentButton>
+                <Frame CornerRadius="5"
+                       HeightRequest="48"
+                       WidthRequest="261"
+                       Margin="12,0,0,0"
+                       Padding="0"
+                       HorizontalOptions="Start"
+                       VerticalOptions="Center"
+                       BackgroundColor="#EBEDF1"
+                       HasShadow="False">
+                    <Grid>
+                        <ffimageloading:CachedImage WidthRequest="17"
+                                                    HeightRequest="17"
+                                                    Aspect="AspectFill"
+                                                    Source="search"
+                                                    VerticalOptions="Center"
+                                                    HorizontalOptions="Start"
+                                                    Margin="12,0,0,0" />
+                        <controls:BorderlessEntry HorizontalOptions="Start"
+                                                  VerticalOptions="Center"
+                                                  FontSize="14"
+                                                  TextColor="Black"
+                                                  Text="{Binding KeyWord}"
+                                                  Placeholder="Search ticket id, name or email"
+                                                  PlaceholderColor="#AEB0B4"
+                                                  Margin="40,0,10,0" />
+                    </Grid>
+                </Frame>
+
 
             </Grid>
             <BoxView Grid.Row="3"

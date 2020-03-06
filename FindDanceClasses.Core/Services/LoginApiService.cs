@@ -5,6 +5,8 @@ using FindDanceClasses.Core.Commands;
 using Flurl.Http;
 using Flurl;
 using FindDanceClasses.Core.Services.Base;
+using FindDanceClasses.Core.Helpers;
+using System.IO;
 
 namespace FindDanceClasses.Core.Services
 {
@@ -57,21 +59,29 @@ namespace FindDanceClasses.Core.Services
             try
             {
 
-                var result = await LOGIN_URL.PostUrlEncodedAsync(
-                    new
-                    {
-                        UserName = model.UserName,
-                        Password = model.Password,
-                        RememberMe = true
-                    }).ReceiveJson<LoginResponse>();
+                var result = await LOGIN_URL.PostJsonAsync(model).ReceiveJson<LoginResponse>();
                 return result;
 
             }
-            catch (Exception ex)
+            catch (FlurlHttpException fhx)
             {
+                string mes = String.Empty;
+                foreach (var t in fhx.Data)
+                {
+                    mes += fhx.Data[t];
+                }
                 return new LoginResponse()
                 {
-                    Message = ex.Message
+
+                    Message = fhx.Call.HttpStatus + Environment.NewLine + mes + Environment.NewLine + fhx.InnerException.Message + Environment.NewLine + fhx.InnerException.StackTrace
+                };
+            }
+            catch (Exception ex)
+            {
+
+                return new LoginResponse()
+                {
+                    Message = ex.InnerException.Message + Environment.NewLine + ex.InnerException.StackTrace
                 };
             }
         }

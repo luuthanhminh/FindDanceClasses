@@ -19,6 +19,8 @@ namespace FindDanceClasses.Core.Services
 
         Task<ApiResponse<List<Ticket>>> GetTickets(int companyId, int eventId);
 
+        Task<ApiResponse<List<Ticket>>> SearchTickets(int companyId, int eventId, string keyword);
+
         Task<ApiResponse<bool>> CheckInQrCode(int companyId, int classId, string qrCode, bool checkIn);
     }
 
@@ -30,6 +32,8 @@ namespace FindDanceClasses.Core.Services
 
         const string GET_TICKETS_BY_COMPANY_AND_EVENT = BASE_URL + "/GetAllTicketsByCompanyAndEventId";
 
+        const string SEARCH_TICKET = BASE_URL + "/GetAllTicketsByCompanyAndEventIdSearch";
+
         const string CHECK_IN_USER_BY_QR_CODE = BASE_URL + "/CheckInUserByQrCode";
 
         public async Task<ApiResponse<bool>> CheckInQrCode(int companyId, int classId, string qrCode, bool checkIn)
@@ -40,7 +44,7 @@ namespace FindDanceClasses.Core.Services
                     .SetQueryParam("classId", classId)
                     .SetQueryParam("qrCode", qrCode)
                     .SetQueryParam("checkIn", checkIn)
-                    .WithHeader("Token", AppSettings.Token).WithBasicAuth(AppConstants.DEFAULT_USER_NAME, AppConstants.DEFAULT_PASSWORD).GetStringAsync();
+                    .WithHeader("Token", AppSettings.Token).GetStringAsync();
 
                 return new ApiResponse<bool>
                 {
@@ -65,7 +69,7 @@ namespace FindDanceClasses.Core.Services
             try
             {
                 var result = await GET_EVENTS_BY_COMPANY.SetQueryParam("companyId", companyId)
-                    .WithHeader("Token", AppSettings.Token).WithBasicAuth(AppConstants.DEFAULT_USER_NAME, AppConstants.DEFAULT_PASSWORD).GetJsonAsync<List<Event>>();
+                    .WithHeader("Token", AppSettings.Token).GetJsonAsync<List<Event>>();
 
                 return new ApiResponse<List<Event>>
                 {
@@ -91,7 +95,34 @@ namespace FindDanceClasses.Core.Services
             {
                 var result = await GET_TICKETS_BY_COMPANY_AND_EVENT.SetQueryParam("companyId", companyId)
                     .SetQueryParam("eventId", eventId)
-                    .WithHeader("Token", AppSettings.Token).WithBasicAuth(AppConstants.DEFAULT_USER_NAME, AppConstants.DEFAULT_PASSWORD).GetJsonAsync<List<Ticket>>();
+                    .WithHeader("Token", AppSettings.Token).GetJsonAsync<List<Ticket>>();
+
+                return new ApiResponse<List<Ticket>>
+                {
+                    Result = result
+                };
+            }
+            catch (Exception ex)
+            {
+                return new ApiResponse<List<Ticket>>
+                {
+                    Err = new Result()
+                    {
+                        IsError = true,
+                        Message = ex.Message
+                    }
+                };
+            }
+        }
+
+        public async Task<ApiResponse<List<Ticket>>> SearchTickets(int companyId, int eventId, string keyword)
+        {
+            try
+            {
+                var result = await SEARCH_TICKET.SetQueryParam("companyId", companyId)
+                    .SetQueryParam("eventId", eventId)
+                    .SetQueryParam("ticketIdnameOrEmail", keyword)
+                    .WithHeader("Token", AppSettings.Token).GetJsonAsync<List<Ticket>>();
 
                 return new ApiResponse<List<Ticket>>
                 {
