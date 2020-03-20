@@ -110,10 +110,41 @@ namespace FindDanceClasses.Core.ViewModels
 
         private async Task Scan()
         {
+
+
             var result = await this.NavigationService.Navigate<ScanViewModel, int, string>(_eventId);
             if (!String.IsNullOrEmpty(result))
             {
-                await LoadData();
+                var ticket = this.Tickets.FirstOrDefault(t => t.QrCode.Equals(result));
+                if (ticket == null)
+                {
+                    await this.DialogService.ShowMessage("Ticket not found");
+                    return;
+                }
+                else
+                {
+                    if (ticket.IsCheckedIn)
+                    {
+                        await DialogService.ShowMessage("App", "Attendee is already checked in", "OK");
+                    }
+                    else
+                    {
+                        var checkInResult = await this._apiService.CheckInQrCode(2669, _eventId, result, true, ticket.Index);
+
+                        if (checkInResult.Err != null)
+                        {
+                            await DialogService.ShowMessage(checkInResult.Err.Message);
+                        }
+                        else
+                        {
+                            await DialogService.ShowMessage("Success", $"{ticket.FullName} -  Checked in", "OK");
+                            await LoadData();
+                        }
+                    }
+
+                }
+
+
             }
         }
 
@@ -188,8 +219,11 @@ namespace FindDanceClasses.Core.ViewModels
                 IsCheckedIn = t.IsCheckedIn,
                 IsNotCheckedIn = !t.IsCheckedIn,
                 Name = t.Name,
+                Index = t.Index,
                 SingleChargeItemID = t.SingleChargeItemID,
-                FullName = $"{t.FirstName} {t.LastName} - Order #{t.SingleChargeItemID}"
+                OrderId = t.OrderId,
+                DisplayName = $"{t.FirstName} {t.LastName} - Order #{t.OrderId}",
+                FullName = $"{t.FirstName} {t.LastName}"
             }));
 
             HideLoading();
@@ -217,7 +251,10 @@ namespace FindDanceClasses.Core.ViewModels
                         IsNotCheckedIn = !t.IsCheckedIn,
                         Name = t.Name,
                         SingleChargeItemID = t.SingleChargeItemID,
-                        FullName = $"{t.FirstName} {t.LastName} - Order #{t.SingleChargeItemID}"
+                        OrderId = t.OrderId,
+                        Index = t.Index,
+                        DisplayName = $"{t.FirstName} {t.LastName} - Order #{t.OrderId}",
+                        FullName = $"{t.FirstName} {t.LastName}"
                     }));
                 }
             }

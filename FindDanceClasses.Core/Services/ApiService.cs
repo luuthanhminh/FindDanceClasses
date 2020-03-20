@@ -21,7 +21,7 @@ namespace FindDanceClasses.Core.Services
 
         Task<ApiResponse<List<Ticket>>> SearchTickets(int companyId, int eventId, string keyword);
 
-        Task<ApiResponse<bool>> CheckInQrCode(int companyId, int classId, string qrCode, bool checkIn);
+        Task<ApiResponse<bool>> CheckInQrCode(int companyId, int classId, string qrCode, bool checkIn, int index);
     }
 
     public class ApiService : BaseApiService, IApiService
@@ -36,7 +36,7 @@ namespace FindDanceClasses.Core.Services
 
         const string CHECK_IN_USER_BY_QR_CODE = BASE_URL + "/CheckInUserByQrCode";
 
-        public async Task<ApiResponse<bool>> CheckInQrCode(int companyId, int classId, string qrCode, bool checkIn)
+        public async Task<ApiResponse<bool>> CheckInQrCode(int companyId, int classId, string qrCode, bool checkIn, int index)
         {
             try
             {
@@ -44,6 +44,7 @@ namespace FindDanceClasses.Core.Services
                     .SetQueryParam("classId", classId)
                     .SetQueryParam("qrCode", qrCode)
                     .SetQueryParam("checkIn", checkIn)
+                    .SetQueryParam("index", index)
                     .WithHeader("Token", AppSettings.Token).GetStringAsync();
 
                 return new ApiResponse<bool>

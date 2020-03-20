@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using FindDanceClasses.Core.Commands;
 using FindDanceClasses.Core.Helpers;
 using MvvmCross.Logging;
+using System.Diagnostics;
 
 namespace FindDanceClasses.Core.ViewModels
 {
@@ -36,31 +37,31 @@ namespace FindDanceClasses.Core.ViewModels
         }
 
 
-        //private string _error;
-        //public string Error
-        //{
-        //    get
-        //    {
-        //        return _error;
-        //    }
-        //    set
-        //    {
-        //        SetProperty(ref _error, value);
-        //    }
-        //}
+        private string _error;
+        public string Error
+        {
+            get
+            {
+                return _error;
+            }
+            set
+            {
+                SetProperty(ref _error, value);
+            }
+        }
 
-        //private bool _canlogin = true;
-        //public bool CanLogin
-        //{
-        //    get
-        //    {
-        //        return _canlogin;
-        //    }
-        //    set
-        //    {
-        //        SetProperty(ref _canlogin, value);
-        //    }
-        //}
+        private bool _canlogin = true;
+        public bool CanLogin
+        {
+            get
+            {
+                return _canlogin;
+            }
+            set
+            {
+                SetProperty(ref _canlogin, value);
+            }
+        }
 
         #endregion
 
@@ -130,12 +131,18 @@ namespace FindDanceClasses.Core.ViewModels
                 else
                 {
                     await DialogService.ShowMessage("Error", result.Message, "OK");
+                    //Error = result.Message;
+                    //CanLogin = false;
+                    Debug.WriteLine($"Error: {result.Message}");
                 }
 
             }
             catch (Exception ex)
             {
                 await DialogService.ShowMessage("Error", ex.Message, "OK");
+                Error = ex.InnerException?.Message + Environment.NewLine + ex.InnerException?.StackTrace;
+                //CanLogin = false;
+                Debug.WriteLine($"Error: {Error}");
             }
             finally
             {

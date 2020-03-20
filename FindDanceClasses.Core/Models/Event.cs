@@ -24,5 +24,9 @@ namespace FindDanceClasses.Core.Models
         public string CompanyName { get; set; }
 
         public string VenueAddress { get; set; }
+
+        public string ImageUrl { get; set; }
+
+        public bool IsInPast { get; set; }
     }
 }

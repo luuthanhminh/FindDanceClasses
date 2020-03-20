@@ -56,13 +56,13 @@
                    Margin="0,0,0,10" />
             <Grid Grid.Row="2"
                   BackgroundColor="White">
-                <ffimageloading:CachedImage VerticalOptions="Center"
+                <!--<ffimageloading:CachedImage VerticalOptions="Center"
                                             HorizontalOptions="Start"
                                             WidthRequest="15"
                                             HeightRequest="22"
                                             Margin="293,0,0,0"
                                             Source="mic"
-                                            Aspect="AspectFill" />
+                                            Aspect="AspectFill" />-->
 
                 <controls:ContentButton
                     
@@ -147,7 +147,7 @@
                                                                 IsVisible="{Binding IsNotCheckedIn}" />
                                     <StackLayout Margin="22,11,5,0"
                                                  Spacing="10">
-                                        <Label Text="{Binding FullName}"
+                                        <Label Text="{Binding DisplayName}"
                                                TextColor="Black"
                                                FontSize="16" />
                                         <Label Text="{Binding Name}"

@@ -22,6 +22,19 @@ namespace FindDanceClasses.Core.ViewModels.Items
             }
         }
 
+        private bool _isInPast;
+        public bool IsInPast
+        {
+            get
+            {
+                return _isInPast;
+            }
+            set
+            {
+                SetProperty(ref _isInPast, value);
+            }
+        }
+
         private string _name;
         public string Name
         {
@@ -45,6 +58,19 @@ namespace FindDanceClasses.Core.ViewModels.Items
             set
             {
                 SetProperty(ref _venueAddress, value);
+            }
+        }
+
+        private string _imageUrl;
+        public string ImageUrl
+        {
+            get
+            {
+                return _imageUrl;
+            }
+            set
+            {
+                SetProperty(ref _imageUrl, value);
             }
         }
 

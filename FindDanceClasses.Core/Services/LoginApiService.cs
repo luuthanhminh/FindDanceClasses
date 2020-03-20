@@ -7,6 +7,8 @@ using Flurl;
 using FindDanceClasses.Core.Services.Base;
 using FindDanceClasses.Core.Helpers;
 using System.IO;
+using RestSharp;
+using System.Net;
 
 namespace FindDanceClasses.Core.Services
 {
@@ -65,23 +67,27 @@ namespace FindDanceClasses.Core.Services
             }
             catch (FlurlHttpException fhx)
             {
-                string mes = String.Empty;
-                foreach (var t in fhx.Data)
+                if (fhx.Call.HttpStatus == HttpStatusCode.BadRequest)
                 {
-                    mes += fhx.Data[t];
+                    var res = await fhx.GetResponseJsonAsync<LoginResponse>();
+                    return res;
                 }
-                return new LoginResponse()
+                else
                 {
+                    return new LoginResponse()
+                    {
 
-                    Message = fhx.Call.HttpStatus + Environment.NewLine + mes + Environment.NewLine + fhx.InnerException.Message + Environment.NewLine + fhx.InnerException.StackTrace
-                };
+                        Message = fhx.Call.HttpStatus + Environment.NewLine + fhx.Message
+                    };
+                }
+
             }
             catch (Exception ex)
             {
 
                 return new LoginResponse()
                 {
-                    Message = ex.InnerException.Message + Environment.NewLine + ex.InnerException.StackTrace
+                    Message = ex.Message
                 };
             }
         }

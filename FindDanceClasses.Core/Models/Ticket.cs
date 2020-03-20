@@ -3,6 +3,8 @@ namespace FindDanceClasses.Core.Models
 {
     public class Ticket
     {
+        public int OrderId { get; set; }
+
         public int SingleChargeItemID { get; set; }
 
         public string FirstName { get; set; }
@@ -14,5 +16,7 @@ namespace FindDanceClasses.Core.Models
         public string Name { get; set; }
 
         public string QrCode { get; set; }
+
+        public int Index { get; set; }
     }
 }

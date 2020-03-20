@@ -4,7 +4,7 @@ namespace FindDanceClasses.Core.ViewModels.Items
     public class TicketItemViewModel : BaseItemViewModel
     {
         public string QrCode { get; set; }
-
+        public int Index { get; set; }
 
         private bool _isCheckedIn;
         public bool IsCheckedIn
@@ -59,6 +59,19 @@ namespace FindDanceClasses.Core.ViewModels.Items
             }
         }
 
+        private string _displayName;
+        public string DisplayName
+        {
+            get
+            {
+                return _displayName;
+            }
+            set
+            {
+                SetProperty(ref _displayName, value);
+            }
+        }
+
         private int _singleChargeItemID;
         public int SingleChargeItemID
         {
@@ -69,6 +82,19 @@ namespace FindDanceClasses.Core.ViewModels.Items
             set
             {
                 SetProperty(ref _singleChargeItemID, value);
+            }
+        }
+
+        private int _orderId;
+        public int OrderId
+        {
+            get
+            {
+                return _orderId;
+            }
+            set
+            {
+                SetProperty(ref _orderId, value);
             }
         }
 

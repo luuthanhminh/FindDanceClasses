@@ -97,6 +97,19 @@ namespace FindDanceClasses.Core.ViewModels
             }
         }
 
+        private ObservableCollection<EventItemViewModel> _pastEvents = new ObservableCollection<EventItemViewModel>();
+        public ObservableCollection<EventItemViewModel> PastEvents
+        {
+            get
+            {
+                return _pastEvents;
+            }
+            set
+            {
+                SetProperty(ref _pastEvents, value);
+            }
+        }
+
         private int _tabIndex = 0;
         public int TabIndex
         {
@@ -263,10 +276,13 @@ namespace FindDanceClasses.Core.ViewModels
                         ClassID = t.ClassID,
                         IsClassLive = t.IsClassLive,
                         VenueAddress = t.VenueAddress,
+                        ImageUrl = t.ImageUrl,
+                        IsInPast = t.IsInPast,
                         ParentViewModel = this
                     }).ToList();
 
-                    LiveEvents = new ObservableCollection<EventItemViewModel>(_allEvents.Where(e => e.IsClassLive));
+                    LiveEvents = new ObservableCollection<EventItemViewModel>(_allEvents.Where(e => e.IsClassLive && !e.IsInPast));
+                    PastEvents = new ObservableCollection<EventItemViewModel>(_allEvents.Where(e => e.IsClassLive && e.IsInPast));
                     DraftEvents = new ObservableCollection<EventItemViewModel>(_allEvents.Where(e => !e.IsClassLive));
                 }
             }

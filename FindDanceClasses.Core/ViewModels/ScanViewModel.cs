@@ -24,19 +24,13 @@ namespace FindDanceClasses.Core.ViewModels
 
     public class ScanViewModel : BaseWithObjectAndReturnViewModel<int, string>
     {
-        readonly IApiService _apiService;
-
-        readonly IMvxMessenger _messenger;
 
         int _classId;
 
         #region Constructors
 
-        public ScanViewModel(IMvxNavigationService navigationService, IDialogService dialogService, IMvxLogProvider logProvider,
-            IApiService apiService, IMvxMessenger messenger) : base(navigationService, dialogService, logProvider)
+        public ScanViewModel(IMvxNavigationService navigationService, IDialogService dialogService, IMvxLogProvider logProvider) : base(navigationService, dialogService, logProvider)
         {
-            _apiService = apiService;
-            _messenger = messenger;
         }
 
         #endregion
@@ -99,18 +93,19 @@ namespace FindDanceClasses.Core.ViewModels
                 if (!isChecking)
                 {
                     isChecking = true;
-                    var result = await this._apiService.CheckInQrCode(2669, _classId, qrCode, true);
+                    await this.NavigationService.Close(this, qrCode);
+                    //var result = await this._apiService.CheckInQrCode(2669, _classId, qrCode, true);
 
-                    if (result.Err != null)
-                    {
-                        await DialogService.ShowMessage(result.Err.Message);
-                    }
-                    else
-                    {
-                        await this.NavigationService.Close(this, qrCode);
-                        //await DialogService.ShowMessage("Checkin", "Success", "OK");
+                    //if (result.Err != null)
+                    //{
+                    //    await DialogService.ShowMessage(result.Err.Message);
+                    //}
+                    //else
+                    //{
+                    //    await this.NavigationService.Close(this, qrCode);
+                    //    //await DialogService.ShowMessage("Checkin", "Success", "OK");
 
-                    }
+                    //}
                 }
 
 
