@@ -35,6 +35,8 @@ namespace FindDanceClasses.Droid
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init(true);
             AiForms.Renderers.Droid.SettingsViewInit.Init();
             MobileBarcodeScanner.Initialize(Application);
+            // Initializing Popups
+            Rg.Plugins.Popup.Popup.Init(this, savedInstanceState);
 
         }
 

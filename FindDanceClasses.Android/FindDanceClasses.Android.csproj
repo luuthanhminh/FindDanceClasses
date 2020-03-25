@@ -115,6 +115,9 @@
     <PackageReference Include="Syncfusion.Xamarin.Core">
       <Version>17.4.0.50</Version>
     </PackageReference>
+    <PackageReference Include="Rg.Plugins.Popup">
+      <Version>1.2.0.223</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />

@@ -28,6 +28,7 @@
     <PackageReference Include="ZXing.Net.Mobile" Version="2.4.1" />
     <PackageReference Include="Syncfusion.Xamarin.SfBusyIndicator" Version="17.4.0.50" />
     <PackageReference Include="Syncfusion.Xamarin.Core" Version="17.4.0.50" />
+    <PackageReference Include="Rg.Plugins.Popup" Version="1.2.0.223" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FindDanceClasses.Core\FindDanceClasses.Core.csproj" />
@@ -38,6 +39,7 @@
     <Folder Include="Pages\Base\" />
     <Folder Include="Controls\" />
     <Folder Include="Services\" />
+    <Folder Include="Controls\Popups\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="MainPage.xaml.cs" />

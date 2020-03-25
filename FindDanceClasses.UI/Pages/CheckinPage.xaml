@@ -81,10 +81,10 @@
                 </controls:ContentButton>
                 <Frame CornerRadius="5"
                        HeightRequest="48"
-                       WidthRequest="261"
-                       Margin="12,0,0,0"
+                       
+                       Margin="12,0,55,0"
                        Padding="0"
-                       HorizontalOptions="Start"
+                       HorizontalOptions="FillAndExpand"
                        VerticalOptions="Center"
                        BackgroundColor="#EBEDF1"
                        HasShadow="False">
@@ -119,6 +119,7 @@
                                    ItemSpacing="0,0,0,13"
                                    BackgroundColor="Transparent"
                                    SelectionMode="Single"
+                                   x:Name="sfTickets"
                                    SelectionBackgroundColor="Transparent"
                                    DragStartMode="None"
                                    ItemsSource="{Binding Tickets}"
@@ -154,12 +155,22 @@
                                                TextColor="#828282"
                                                FontSize="12" />
                                     </StackLayout>
-                                    <Switch Grid.Column="1"
-                                            VerticalOptions="Center"
-                                            HorizontalOptions="Start"
+                                    <Grid Grid.Column="1" VerticalOptions="Center"
+                                            HorizontalOptions="Start">
+                                        <Grid.GestureRecognizers>
+                                            <TapGestureRecognizer
+                Command="{Binding ToggleCommand}" />
+                                        </Grid.GestureRecognizers>
+                                        <Switch 
+                                           
+                                            InputTransparent="True"
                                             WidthRequest="44"
                                             IsToggled="{Binding IsCheckedIn}"
-                                            OnColor="#BD1177" />
+                                            OnColor="#BD1177" >
+
+                                        </Switch>
+                                    </Grid>
+
                                     <ffimageloading:CachedImage Grid.Column="1"
                                                                 WidthRequest="25"
                                                                 HeightRequest="25"

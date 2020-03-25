@@ -1,10 +1,15 @@
 ﻿using System;
+using System.Threading.Tasks;
+using MvvmCross.Commands;
+
 namespace FindDanceClasses.Core.ViewModels.Items
 {
     public class TicketItemViewModel : BaseItemViewModel
     {
         public string QrCode { get; set; }
         public int Index { get; set; }
+
+        public bool IsInPopup { get; set; }
 
         private bool _isCheckedIn;
         public bool IsCheckedIn
@@ -98,5 +103,15 @@ namespace FindDanceClasses.Core.ViewModels.Items
             }
         }
 
+        public IMvxAsyncCommand ToggleCommand => new MvxAsyncCommand(Toggle);
+        async Task Toggle()
+        {
+            this.IsCheckedIn = !this.IsCheckedIn;
+            if (ParentViewModel is CheckinViewModel vm)
+            {
+                var result = await vm.ToggleChanged(this);
+                if (!result) this.IsCheckedIn = !this.IsCheckedIn;
+            }
+        }
     }
 }

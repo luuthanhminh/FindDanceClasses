@@ -35,6 +35,7 @@ namespace FindDanceClasses.iOS
             new SfCarouselRenderer();
             new SfBusyIndicatorRenderer();
             SfEffectsViewRenderer.Init();
+            Rg.Plugins.Popup.Popup.Init();
             Syncfusion.SfDataGrid.XForms.iOS.SfDataGridRenderer.Init();
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init();
             Syncfusion.XForms.iOS.TabView.SfTabViewRenderer.Init();

@@ -14,16 +14,22 @@ using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
 using MvvmCross.Plugin.Messenger;
+using MvvmCross.ViewModels;
 
 namespace FindDanceClasses.Core.ViewModels
 {
-
+    public interface ICheckinView
+    {
+        void ShowScanDiaglog();
+    }
 
     public class CheckinViewModel : BaseWithObjectViewModel<int>
     {
         readonly IApiService _apiService;
 
         readonly IMvxMessenger _messenger;
+
+        public ICheckinView View { get; set; }
 
         int _eventId;
 
@@ -94,6 +100,19 @@ namespace FindDanceClasses.Core.ViewModels
             }
         }
 
+        private ObservableCollection<TicketItemViewModel> _scanTickets = new ObservableCollection<TicketItemViewModel>();
+        public ObservableCollection<TicketItemViewModel> ScanTickets
+        {
+            get
+            {
+                return _scanTickets;
+            }
+            set
+            {
+                SetProperty(ref _scanTickets, value);
+            }
+        }
+
         #endregion
 
         #region Commands
@@ -115,20 +134,21 @@ namespace FindDanceClasses.Core.ViewModels
             var result = await this.NavigationService.Navigate<ScanViewModel, int, string>(_eventId);
             if (!String.IsNullOrEmpty(result))
             {
-                var ticket = this.Tickets.FirstOrDefault(t => t.QrCode.Equals(result));
-                if (ticket == null)
+                var tickets = this.Tickets.Where(t => t.QrCode.Equals(result));
+                if (tickets.Count() == 0)
                 {
                     await this.DialogService.ShowMessage("Ticket not found");
                     return;
                 }
                 else
                 {
-                    if (ticket.IsCheckedIn)
+                    if (tickets.Count(t => t.IsCheckedIn) == tickets.Count())
                     {
                         await DialogService.ShowMessage("App", "Attendee is already checked in", "OK");
                     }
-                    else
+                    else if (tickets.Count() == 1)
                     {
+                        var ticket = tickets.First();
                         var checkInResult = await this._apiService.CheckInQrCode(2669, _eventId, result, true, ticket.Index);
 
                         if (checkInResult.Err != null)
@@ -137,10 +157,19 @@ namespace FindDanceClasses.Core.ViewModels
                         }
                         else
                         {
+
                             await DialogService.ShowMessage("Success", $"{ticket.FullName} -  Checked in", "OK");
                             await LoadData();
                         }
                     }
+                    else
+                    {
+                        var popupTickets = tickets.ToList();
+                        popupTickets.ForEach(t => t.IsInPopup = true);
+                        ScanTickets = new ObservableCollection<TicketItemViewModel>(popupTickets);
+                        View?.ShowScanDiaglog();
+                    }
+
 
                 }
 
@@ -152,6 +181,46 @@ namespace FindDanceClasses.Core.ViewModels
 
 
         #region Methods
+
+        public async void Refresh()
+        {
+            await LoadData();
+        }
+
+        public async Task<bool> ToggleChanged(TicketItemViewModel ticket)
+        {
+            bool isSuccess = false;
+            try
+            {
+                ShowLoading();
+
+                var checkInResult = await this._apiService.CheckInQrCode(2669, _eventId, ticket.QrCode, ticket.IsCheckedIn, ticket.Index);
+
+                if (checkInResult.Err != null)
+                {
+                    await DialogService.ShowMessage(checkInResult.Err.Message);
+                }
+                else
+                {
+                    var msg = ticket.IsCheckedIn ? "Checked in" : "Checked out";
+                    await DialogService.ShowMessage("Success", $"{ticket.FullName} -  {msg}", "OK");
+                    isSuccess = true;
+
+                }
+            }
+            catch (Exception ex)
+            {
+                await DialogService.ShowMessage(ex.Message);
+            }
+            finally
+            {
+                HideLoading();
+                //if (!ticket.IsInPopup && isSuccess) 
+            }
+
+            return isSuccess;
+
+        }
 
         async Task DoSearch()
         {
@@ -223,7 +292,8 @@ namespace FindDanceClasses.Core.ViewModels
                 SingleChargeItemID = t.SingleChargeItemID,
                 OrderId = t.OrderId,
                 DisplayName = $"{t.FirstName} {t.LastName} - Order #{t.OrderId}",
-                FullName = $"{t.FirstName} {t.LastName}"
+                FullName = $"{t.FirstName} {t.LastName}",
+                ParentViewModel = this
             }));
 
             HideLoading();
@@ -254,13 +324,14 @@ namespace FindDanceClasses.Core.ViewModels
                         OrderId = t.OrderId,
                         Index = t.Index,
                         DisplayName = $"{t.FirstName} {t.LastName} - Order #{t.OrderId}",
-                        FullName = $"{t.FirstName} {t.LastName}"
+                        FullName = $"{t.FirstName} {t.LastName}",
+                        ParentViewModel = this
                     }));
                 }
             }
             catch (Exception ex)
             {
-
+                await DialogService.ShowMessage(ex.Message);
             }
             finally
             {

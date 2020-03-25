@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+           xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup" xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
+             x:Class="FindDanceClasses.UI.Controls.Popups.TicketCheckinPopup">
+    <Frame HasShadow="True"  VerticalOptions="Center" HorizontalOptions="Center" Margin="20" Padding="0">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="44"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="64"/>
+            </Grid.RowDefinitions>
+            <BoxView BackgroundColor="#BE1177"/>
+            <Label Text="Select ticket to check-in" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" FontSize="20"/>
+            <syncfusion:SfListView
+                Grid.Row="1"
+                    ItemSize="83"
+                                   Margin="13,0"
+                                   IsScrollBarVisible="false"
+                                   ItemSpacing="0,0,0,13"
+                                   BackgroundColor="Transparent"
+                                   SelectionMode="Single"
+                                   SelectionBackgroundColor="Transparent"
+                                   DragStartMode="None"
+                                   x:Name="sfTickets"
+                                   ItemsSource="{Binding ScanTickets}"
+                                   SelectionGesture="Tap">
+                <syncfusion:SfListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.View>
+                                <Grid>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="110" />
+                                    </Grid.ColumnDefinitions>
+                                    <ffimageloading:CachedImage Grid.ColumnSpan="2"
+                                                                VerticalOptions="FillAndExpand"
+                                                                HorizontalOptions="Fill"
+                                                                Source="checkinBgToggled"
+                                                                Aspect="Fill"
+                                                                IsVisible="{Binding IsCheckedIn}" />
+                                    <ffimageloading:CachedImage Grid.ColumnSpan="2"
+                                                                VerticalOptions="FillAndExpand"
+                                                                HorizontalOptions="Fill"
+                                                                Source="checkinBgNotToggled"
+                                                                Aspect="Fill"
+                                                                IsVisible="{Binding IsNotCheckedIn}" />
+                                    <StackLayout Margin="22,11,5,0"
+                                                 Spacing="10">
+                                        <Label Text="{Binding DisplayName}"
+                                               TextColor="Black"
+                                               FontSize="16" />
+                                        <Label Text="{Binding Name}"
+                                               TextColor="#828282"
+                                               FontSize="12" />
+                                    </StackLayout>
+                                    <Grid Grid.Column="1" VerticalOptions="Center"
+                                            HorizontalOptions="Start">
+                                        <Grid.GestureRecognizers>
+                                            <TapGestureRecognizer
+                Command="{Binding ToggleCommand}" />
+                                        </Grid.GestureRecognizers>
+                                        <Switch 
+                                           
+                                            InputTransparent="True"
+                                            WidthRequest="44"
+                                            IsToggled="{Binding IsCheckedIn}"
+                                            OnColor="#BD1177" >
+
+                                        </Switch>
+                                    </Grid>
+                                    <ffimageloading:CachedImage Grid.Column="1"
+                                                                WidthRequest="25"
+                                                                HeightRequest="25"
+                                                                Source="info"
+                                                                Aspect="AspectFill"
+                                                                VerticalOptions="Center"
+                                                                HorizontalOptions="End"
+                                                                Margin="0,0,20,0" />
+                                </Grid>
+
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+                </syncfusion:SfListView.ItemTemplate>
+
+            </syncfusion:SfListView>
+            <Button Grid.Row="2" Clicked="Close_Popup" BackgroundColor="#BE1177" TextColor="White" Text="Close" WidthRequest="100" HeightRequest="40" VerticalOptions="Center" HorizontalOptions="Center"/>
+            <busyindicator:SfBusyIndicator Grid.RowSpan="3" BackgroundColor="Transparent" InputTransparent="True" ViewBoxWidth = "60"
+                                                    TextColor="{StaticResource LoadingColor}"
+                                                    Title="Loading"
+                                                    AnimationType="SingleCircle"
+                                       ViewBoxHeight="60"  HorizontalOptions="Center" VerticalOptions="Center" IsBusy="{Binding IsLoading}"  />
+        </Grid>
+    </Frame>
+</pages:PopupPage>
